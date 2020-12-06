@@ -1,0 +1,27 @@
+.SecurityDetails {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	flex-wrap: wrap;
+	font-weight: 500;
+	font-size: 0.6667em;
+	line-height: 0.6667em;
+}
+
+.SecurityDetails .web {
+	display: flex;
+	align-items: center;
+}
+
+.SecurityDetails > * {
+	margin-right: 1.89em;
+	margin-bottom: 1em;
+}
+.SecurityDetails > span {
+	margin-left: 0.3em;
+}
+
+.SecurityDetails i {
+	height: 1.33em;
+	width: 1.33em;
+}

@@ -1,0 +1,19 @@
+.PortfolioPage {
+}
+
+.empty-portfolio {
+	height: 100%;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: top;
+	background-size: 100%;
+}
+
+.empty-portfolio p {
+	margin-top: 5.83em;
+	margin-bottom: 1.67em;
+}
+
+.empty-portfolio img {
+	max-height: 53vmax;
+}

@@ -1,0 +1,128 @@
+body {
+	font-family: Sofia Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 18px;
+}
+
+a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+h2 {
+	font-weight: 900;
+	font-size: 1.3333rem;
+	line-height: 1.3333rem;
+}
+
+h3 {
+	font-weight: bold;
+}
+
+figcaption {
+	font-family: Sofia Pro; /* Futura */
+	font-style: normal;
+	font-weight: 500;
+	font-size: 0.44rem;
+	line-height: 0.61rem;
+}
+
+input {
+	border: 2px solid #000000;
+	border-radius: 2px;
+	font-weight: 300;
+	padding-left: 16px;
+}
+
+.emphasis {
+	font-weight: bold;
+}
+
+.de-emphasis,
+::placeholder {
+	color: #a9a7a7;
+}
+
+.positive {
+	color: #008000;
+}
+
+.negative {
+	color: #ff0000;
+}
+
+/* LAYOUT */
+
+/* Top layer */
+html,
+body,
+#root {
+	height: 100%;
+}
+
+/* Content Layer */
+
+/*
+PAGE HEADER PADDING 48px padding top
+- each page
+*/
+.page {
+	padding-top: 48px;
+	display: flex;
+	flex-direction: column;
+}
+
+.panel {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+/* 
+PANNEL PADDING 20px left/right
+- Portfolio List
+- Login
+- Profile
+*/
+
+.card {
+	display: flex;
+	flex-direction: column;
+	border-radius: 8px;
+	margin-bottom: 24px;
+	padding: 0.83em;
+}
+
+.card-line {
+	margin-bottom: 1.17em;
+}
+
+.card-line:nth-last-child(0) {
+	margin-bottom: 0;
+}
+
+/* COLOR SCHEME */
+.bg-primary {
+	background-color: #000;
+	color: #fff;
+}
+
+.bg-secondary {
+	background-color: #06497e;
+	color: #fff;
+}
+
+.bg-accent {
+	background-color: #51ff82;
+}
+
+.accent {
+	color: #51ff82;
+}
+
+/* FORM ELEMENTS */
+input,
+.form-button {
+	height: 50px;
+}

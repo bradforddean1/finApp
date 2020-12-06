@@ -1,0 +1,10 @@
+.ButtonAdd {
+	position: fixed;
+	right: 8px;
+	bottom: calc(8px + 62px); /* nav bar + 8px*/
+	height: 56px;
+	width: 56px;
+	background: #51ff82;
+	border: 2px solid #000000;
+	box-sizing: border-box;
+}

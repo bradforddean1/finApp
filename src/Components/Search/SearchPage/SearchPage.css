@@ -1,0 +1,17 @@
+.SearchPage .default {
+	text-align: center;
+}
+
+.SearchPage .default img {
+	max-height: 62vmax;
+	margin-top: 5vmax;
+}
+
+.SearchPage .header {
+	padding: 0 16px 8px 16px;
+	display: flex;
+}
+
+.SearchPage .header > * {
+	flex: 1;
+}

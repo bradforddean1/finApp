@@ -1,0 +1,9 @@
+.Login {
+	display: flex;
+	flex-direction: column;
+}
+
+.Login input,
+.Login button {
+	margin-bottom: 24px;
+}

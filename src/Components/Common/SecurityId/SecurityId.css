@@ -1,0 +1,13 @@
+.SecurityId {
+	display: flex;
+	align-items: center;
+}
+
+.SecurityId img {
+	margin-right: 0.83em;
+	background-color: #fff;
+	border: 0px solid;
+	border-radius: 45px;
+	height: 1.3333rem;
+	width: 1.3333rem;
+}

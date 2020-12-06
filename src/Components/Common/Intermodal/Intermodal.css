@@ -1,0 +1,18 @@
+.Intermodal {
+	position: fixed;
+	display: flex;
+	top: 0;
+	left: 0;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: purple;
+}
+
+.intermodal-box {
+	position: relative;
+	width: 300px;
+	min-height: 100px;
+	padding: 25px;
+}

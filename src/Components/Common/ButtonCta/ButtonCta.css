@@ -1,0 +1,26 @@
+.ButtonCta {
+	padding: 0;
+	border-width: 0;
+	border-radius: 2px;
+
+	font-family: Sofia Pro;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 18px;
+	color: #e5e5e5;
+}
+
+/* CTA */
+.cta {
+	background: #06497e;
+	height: 50px;
+}
+
+a.cta {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Intermodal */

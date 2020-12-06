@@ -1,0 +1,12 @@
+.Quote {
+	display: flex;
+	flex-direction: column;
+}
+
+.Quote * {
+	margin-bottom: 0.44em;
+}
+
+.Quote *:nth-last-child(0) {
+	margin-bottom: 0;
+}
