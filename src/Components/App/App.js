@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import ApplicationError from "../ApplicationError/ApplicationError";
 import SplashPage from "../SplashPage/SplashPage";
 import LoginPage from "../LoginPage/LoginPage";
 import SearchPage from "../Search/SearchPage/SearchPage";
@@ -16,19 +17,21 @@ import "./App.css";
 function App(props) {
 	return (
 		<div className="App">
-			<main className="main-content">
-				<Switch>
-					<Route exact path="/" component={SplashPage} />
-					<Route path="/portfolio" component={PortfolioPage} />
-					<Route path="/search" component={SearchPage} />
-					<Route path="/login" component={LoginPage} />
-					<Route component={NotFoundPage} />
-				</Switch>
-			</main>
-			<footer className="sticky-footer">
-				<Route exact path="/portfolio" component={NavBar} />
-				<Route path="/search" component={NavBar} />
-			</footer>
+			<ApplicationError>
+				<main className="main-content">
+					<Switch>
+						<Route exact path="/" component={SplashPage} />
+						<Route path="/portfolio" component={PortfolioPage} />
+						<Route path="/search" component={SearchPage} />
+						<Route path="/login" component={LoginPage} />
+						<Route component={NotFoundPage} />
+					</Switch>
+				</main>
+				<footer className="sticky-footer">
+					<Route exact path="/portfolio" component={NavBar} />
+					<Route path="/search" component={NavBar} />
+				</footer>
+			</ApplicationError>
 		</div>
 	);
 }
