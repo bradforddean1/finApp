@@ -32,7 +32,7 @@ class ApplicationError extends React.Component {
 
 	render() {
 		if (this.state.hasError) {
-			return <div className="ApplicationError">{/* content goes here */}</div>;
+			return <div className="ApplicationError">This is an error</div>;
 		}
 		return this.props.children;
 	}

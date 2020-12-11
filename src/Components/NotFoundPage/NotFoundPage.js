@@ -7,16 +7,14 @@ import PropTypes from "prop-types";
  * @component
  */
 function NotFoundPage(props) {
-	return <div className="NotFoundPage page">{/* content goes here */}</div>;
+	return (
+		<div className="NotFoundPage page">
+			<h1>404</h1>
+			<p>Content not found</p>
+		</div>
+	);
 }
 
-NotFoundPage.propTypes = {
-	/**
-	 * Example prop
-	 */
-	example: PropTypes.string.isRequired,
-};
-
-NotFoundPage.defaultProps = {};
+NotFoundPage.propTypes = {};
 
 export default NotFoundPage;

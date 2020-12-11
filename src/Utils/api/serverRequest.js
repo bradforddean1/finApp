@@ -23,6 +23,8 @@ const request = (method, endpoint, body) => {
 	return fetch(url, requestOptions).then((response) => {
 		if (response.status === 401) {
 			throw new Error("UNAUTHORIZED");
+		} else if (!response.ok) {
+			throw new Error("REQUESTERROR");
 		}
 		return response;
 	});
@@ -32,7 +34,6 @@ const authenticatedRequest = (method, endpoint, body) => {
 	return request(method, endpoint, body).catch((err) => {
 		if (err.message === "UNAUTHORIZED") {
 			// TODO: show error
-			// TODO: clear cookie
 			// TODO: redirect to login (may be button on show error)
 			console.log("Invalid login, please try again.");
 			return null;

@@ -1,5 +1,6 @@
 import React from "react";
 import ButtonCta from "../Common/ButtonCta/ButtonCta";
+import FullHeaderPage from "../FullHeaderPage/FullHeaderPage";
 import "./SplashPage.css";
 
 /**
@@ -8,17 +9,17 @@ import "./SplashPage.css";
  */
 function SplashPage(props) {
 	return (
-		<div className="SplashPage">
-			<div>
-				<h1>Ztok</h1>
+		<FullHeaderPage>
+			<div className="panel">
 				<p>
 					I am a splash page and I am supposed to tele you about this app...
 				</p>
+
+				<ButtonCta className="cta" tag="a" href="/login">
+					Go Forth
+				</ButtonCta>
 			</div>
-			<ButtonCta className="cta" tag="a" href="/login">
-				Go Forth
-			</ButtonCta>
-		</div>
+		</FullHeaderPage>
 	);
 }
 
