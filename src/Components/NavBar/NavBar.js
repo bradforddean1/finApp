@@ -25,7 +25,7 @@ function NavBar(props) {
 					<figcaption>Portfolio</figcaption>
 				</fig>
 			</Link>
-			<Link to="/login">
+			<Link to="/logout">
 				<fig>
 					<img src={exit} alt="exit" />
 					<figcaption>Logout</figcaption>

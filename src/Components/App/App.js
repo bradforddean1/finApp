@@ -24,6 +24,7 @@ function App(props) {
 						<Route path="/portfolio" component={PortfolioPage} />
 						<Route path="/search" component={SearchPage} />
 						<Route path="/login" component={LoginPage} />
+						<Route path="/logout" component={LoginPage} />
 						<Route component={NotFoundPage} />
 					</Switch>
 				</main>
