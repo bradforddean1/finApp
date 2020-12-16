@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import PortfolioList from "../PortfolioList/PortfolioList";
 import man from "../../../assets/man2.svg";
@@ -18,6 +19,16 @@ function PortfolioPage(props) {
 			.then((Response) => Response.json())
 			.then((portfolio) => {
 				setPortfolioItems(portfolio);
+			})
+			.catch((err) => {
+				if (err.message === "UNAUTHORIZED") {
+					<Redirect
+						to={{
+							pathname: "/login",
+							state: { referrer: "servAuthError" },
+						}}
+					/>;
+				}
 			});
 	};
 

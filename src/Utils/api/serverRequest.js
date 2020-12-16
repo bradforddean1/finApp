@@ -15,8 +15,6 @@ const request = (method, endpoint, body) => {
 		Object.assign(requestOptions, { body });
 	}
 
-	console.log(requestOptions);
-
 	const BASE_URL = `http://localhost:8000/`;
 	const url = BASE_URL.concat(endpoint);
 

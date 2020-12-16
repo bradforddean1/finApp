@@ -27,9 +27,13 @@ ProfileCard.propTypes = {
 	 */
 	title: PropTypes.string.isRequired,
 	/**
-	 * Array of metrics to be inluded on card.
+	 * Array of metrics names to be inluded on card.
 	 */
-	metrics: PropTypes.arrayOf(PropTypes.object),
+	metrics: PropTypes.arrayOf(PropTypes.string),
+	/**
+	 * Array of metric the values.
+	 */
+	values: PropTypes.arrayOf(PropTypes.string),
 };
 
 ProfileCard.defaultProps = {

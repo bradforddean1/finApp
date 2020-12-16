@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import Header from "../ProfileHeader/ProfileHeader";
 import Card from "../ProfileCard/ProfileCard";
-import Chart from "../../Chart/Chart";
 import ProfileContext from "./Profile.context";
 import ButtonAdd from "../../Common/ButtonAdd/ButtonAdd";
 import ButtonCta from "../../Common/ButtonCta/ButtonCta";
@@ -13,11 +12,22 @@ import "./Profile.css";
  * Display securities Profile from Profile context
  * @component
  */
+
 function Profile(props) {
 	const [showIntermodal, setShowIntermodal] = useState(false);
 	const [intermodalContent, setIntermodalContent] = useState();
 
 	const {
+		name,
+		logo,
+		currency,
+		exchange,
+		website,
+		country,
+		ipo,
+		current,
+		change,
+		changePct,
 		ticker,
 		finnhubIndustry,
 		marketCapitalization,
@@ -69,8 +79,19 @@ function Profile(props) {
 
 	return (
 		<div className="Profile panel">
-			<Header />
-			<Chart />
+			<Header
+				name={name}
+				ticker={ticker}
+				logo={logo}
+				currency={currency}
+				exchange={exchange}
+				website={website}
+				country={country}
+				ipo={ipo}
+				current={current}
+				change={change}
+				changePct={changePct}
+			/>
 			<Card
 				title="Segment"
 				metrics={["Industry", "Market Capitalization", "Shares Outstanding"]}
@@ -81,7 +102,6 @@ function Profile(props) {
 				metrics={["Current Ratio Annual", "Current Ratio Quarterly"]}
 				values={[currentRatioAnnual, currentRatioQuarterly]}
 			/>
-
 			<Card
 				title="Value"
 				metrics={["PE Ratio", "Price to Book Ratio"]}
@@ -119,7 +139,7 @@ function Profile(props) {
 					dividendGrowthRate5Y,
 				]}
 			/>
-			<ButtonAdd className="add" tag="button" onClick={addToPortfolio} />
+			<ButtonAdd className="add" tag="button" handleClick={addToPortfolio} />
 			<Intermodal show={showIntermodal} close={() => setShowIntermodal(false)}>
 				{intermodalContent}
 			</Intermodal>

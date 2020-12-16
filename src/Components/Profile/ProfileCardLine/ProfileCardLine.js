@@ -7,9 +7,9 @@ import PropTypes from "prop-types";
  * @component
  */
 function ProfileCardLine(props) {
-	const { key, name, value } = props;
+	const { name, value } = props;
 	return (
-		<li className="ProfileCardLine card-line" key={key}>
+		<li className="ProfileCardLine card-line">
 			<h4>{name}</h4>
 			<span className="emphasis">{value}</span>
 		</li>
@@ -17,7 +17,6 @@ function ProfileCardLine(props) {
 }
 
 ProfileCardLine.propTypes = {
-	key: PropTypes.number.isRequired,
 	name: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
 };

@@ -7,8 +7,6 @@ import "./ApplicationError.css";
  * @component
  */
 class ApplicationError extends React.Component {
-	static defaultProps = {};
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -20,16 +18,6 @@ class ApplicationError extends React.Component {
 		return { hasError: true };
 	}
 
-	// if (err.message === "UNAUTHORIZED") {
-	// 		// TODO: show error
-	// 		// TODO: redirect to login (may be button on show error)
-	// 		console.log("Invalid login, please try again.");
-	// 		return null;
-	// 	} else {
-	// 		console.log(err);
-	// 		throw err;
-	//     }
-
 	render() {
 		if (this.state.hasError) {
 			return <div className="ApplicationError">This is an error</div>;
@@ -40,9 +28,12 @@ class ApplicationError extends React.Component {
 
 ApplicationError.propTypes = {
 	/**
-	 * Example prop
+	 * App content that does not reuslt in error passed through.
 	 */
-	example: PropTypes.string.isRequired,
+	children: PropTypes.oneOfType([
+		PropTypes.element,
+		PropTypes.arrayOf(PropTypes.element),
+	]),
 };
 
 export default ApplicationError;

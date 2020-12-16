@@ -12,7 +12,6 @@ function PortfolioList(props) {
 
 	const makePortfolioCards = () => {
 		return items.map((item) => {
-			console.log(item);
 			return (
 				<PortfolioItem
 					key={item.ticker}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { authenticatedRequest } from "../../../Utils/api/serverRequest";
 import Search from "../../Common/icons/SearchIcon/SearchIcon";
@@ -20,6 +21,16 @@ function SearchBar(props) {
 			.then((Response) => Response.json())
 			.then((result) => {
 				props.resultsCallback(result.profile);
+			})
+			.catch((err) => {
+				if (err.message === "UNAUTHORIZED") {
+					<Redirect
+						to={{
+							pathname: "/login",
+							state: { referrer: "servAuthError" },
+						}}
+					/>;
+				}
 			});
 	};
 

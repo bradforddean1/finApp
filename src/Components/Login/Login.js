@@ -32,7 +32,6 @@ function Login(props) {
 
 		request("POST", "api/auth/login", body)
 			.then((result) => {
-				console.log(result);
 				props.reRoute("/search");
 			})
 			.catch((error) => {

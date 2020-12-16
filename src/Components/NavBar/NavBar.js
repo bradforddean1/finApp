@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import "./NavBar.css";
 import Search from "../Common/icons/SearchIcon/SearchIcon";
 import folder from "../../assets/folder.svg";
@@ -14,34 +13,25 @@ function NavBar(props) {
 	return (
 		<div className="NavBar bg-primary">
 			<Link to="/search">
-				<fig>
+				<figure>
 					<Search color={"#fff"} />
 					<figcaption>Search</figcaption>
-				</fig>
+				</figure>
 			</Link>
 			<Link to="/portfolio">
-				<fig>
+				<figure>
 					<img src={folder} alt="folder" />
 					<figcaption>Portfolio</figcaption>
-				</fig>
+				</figure>
 			</Link>
 			<Link to="/logout">
-				<fig>
+				<figure>
 					<img src={exit} alt="exit" />
 					<figcaption>Logout</figcaption>
-				</fig>
+				</figure>
 			</Link>
 		</div>
 	);
 }
-
-NavBar.propTypes = {
-	/**
-	 * Example prop
-	 */
-	example: PropTypes.string.isRequired,
-};
-
-NavBar.defaultProps = {};
 
 export default NavBar;

@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import ProfileContext from "../Profile/Profile.context";
 import SecurityId from "../../Common/SecurityId/SecurityId";
 import Quote from "../../Common/Quote/Quote";
 import "./ProfileHeader.css";
@@ -23,7 +22,7 @@ function ProfileHeader(props) {
 		current,
 		change,
 		changePct,
-	} = useContext(ProfileContext);
+	} = props;
 
 	return (
 		<div className="ProfileHeader card bg-primary">
@@ -53,7 +52,5 @@ ProfileHeader.propTypes = {
 	website: PropTypes.string,
 	country: PropTypes.string,
 };
-
-ProfileHeader.defaultProps = {};
 
 export default ProfileHeader;
