@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Demo
 
-Live demo can be found [here.](https://bradforddean1.github.io/martian-weather-service/.)
+Live demo can be found [here.](https://fin-app.bradforddean1.vercel.app/).
 
 ## Summary
 
