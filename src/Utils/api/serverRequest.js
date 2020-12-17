@@ -15,7 +15,7 @@ const request = (method, endpoint, body) => {
 		Object.assign(requestOptions, { body });
 	}
 
-	const BASE_URL = `http://localhost:8000/`;
+	const BASE_URL = `https://polar-fjord-49637.herokuapp.com/`;
 	const url = BASE_URL.concat(endpoint);
 
 	return fetch(url, requestOptions).then((response) => {
