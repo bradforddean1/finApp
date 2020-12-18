@@ -28,7 +28,7 @@ function Login(props) {
 
 		setError("");
 
-		const body = { username: username, password: "herman" };
+		const body = { username: username, password: password };
 
 		request("POST", "api/auth/login", body)
 			.then((result) => {
