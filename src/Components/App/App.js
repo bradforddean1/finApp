@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import ApplicationError from "../ApplicationError/ApplicationError";
 import SplashPage from "../SplashPage/SplashPage";
 import LoginPage from "../LoginPage/LoginPage";
@@ -18,6 +18,7 @@ import "./App.css";
 function App(props) {
 	const getLoginComponent = ({ history, location }) => {
 		const referrer = location.state ? location.state.referrer : false;
+		console.log(history);
 		return <LoginPage referrer={referrer} push={history.push} />;
 	};
 
@@ -38,8 +39,20 @@ function App(props) {
 						<Route
 							path="/logout"
 							component={(props) => {
-								authenticatedRequest("GET", "api/auth/logout");
-								return getLoginComponent(props);
+								authenticatedRequest("GET", "api/auth/logout").catch(
+									(error) => {
+										if (!error.type === "UNAUTHORIZED") {
+											throw error;
+										}
+									}
+								);
+								return (
+									<Redirect
+										to={{
+											pathname: "/login",
+										}}
+									/>
+								);
 							}}
 						/>
 						{/* authenticatedRequest("GET", "api/auth/logout"); */}

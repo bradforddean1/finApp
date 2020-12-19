@@ -21,15 +21,30 @@ const request = (method, endpoint, body) => {
 
 	return fetch(url, requestOptions)
 		.then((r) =>
-			r.json().then((data) => ({ status: r.status, body: data, ok: r.ok }))
+			r
+				.json()
+				.then((data) => {
+					return { status: r.status, body: data, ok: r.ok };
+				})
+				.catch(() => {
+					return { status: r.status, body: null, ok: r.ok };
+				})
 		)
+
 		.then((response) => {
 			if (response.status === 401) {
-				const err = new Error(response.body.status);
+				const err = new Error(
+					response.body && response.body.status
+						? response.body.status
+						: "unauthorized"
+				);
 				err.type = "UNAUTHORIZED";
-				err.passValErrors = response.body.valErrors
-					? response.body.valErrors
-					: false;
+
+				err.passValErrors =
+					response.body && response.body.valErrors
+						? response.body.valErrors
+						: false;
+
 				throw err;
 			} else if (!response.ok) {
 				const err = new Error(response.body.status);
