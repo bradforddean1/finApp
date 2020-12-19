@@ -19,18 +19,25 @@ const request = (method, endpoint, body) => {
 
 	const url = SERVER_ROOT.concat("/", endpoint);
 
-	return fetch(url, requestOptions).then((response) => {
-		if (response.status === 401) {
-			const err = new Error(response.json());
-			err.type = "UNAUTHORIZED";
-			throw err;
-		} else if (!response.ok) {
-			const err = new Error(response.json());
-			err.type = "REQUESTERROR";
-			throw err;
-		}
-		return response;
-	});
+	return fetch(url, requestOptions)
+		.then((r) =>
+			r.json().then((data) => ({ status: r.status, body: data, ok: r.ok }))
+		)
+		.then((response) => {
+			if (response.status === 401) {
+				const err = new Error(response.body.status);
+				err.type = "UNAUTHORIZED";
+				err.passValErrors = response.body.valErrors
+					? response.body.valErrors
+					: false;
+				throw err;
+			} else if (!response.ok) {
+				const err = new Error(response.body.status);
+				err.type = "REQUESTERROR";
+				throw err;
+			}
+			return response.body;
+		});
 };
 
 const authenticatedRequest = (method, endpoint, body) => {

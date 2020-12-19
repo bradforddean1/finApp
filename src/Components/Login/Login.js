@@ -30,7 +30,9 @@ function Login(props) {
 			})
 			.catch((error) => {
 				if (error.type === "UNAUTHORIZED") {
-					switch (error.message.status) {
+					console.log(error.message);
+
+					switch (error.message) {
 						case "already logged in":
 							props.reRoute("/search");
 							break;
@@ -68,7 +70,7 @@ function Login(props) {
 		setShowIntermodal(false);
 
 		const body = { username: username, password: password };
-		request("GET", "api/auth/register", body)
+		request("POST", "api/auth/register", body)
 			.then(() => {
 				props.reRoute("/search");
 			})
@@ -95,7 +97,7 @@ function Login(props) {
 						case "invalid password":
 							setIntermodalContent(
 								<>
-									<p>{error.message.valErrors}</p>
+									<p>{error.passValErrors}</p>
 									<ButtonCta
 										tag="button"
 										onClick={() => setShowIntermodal(false)}

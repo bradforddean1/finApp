@@ -18,7 +18,6 @@ function SearchBar(props) {
 		setValError("");
 		const endpoint = `api/quote/${ticker}/profile`;
 		authenticatedRequest("GET", endpoint)
-			.then((Response) => Response.json())
 			.then((result) => {
 				props.resultsCallback(result.profile);
 			})

@@ -16,7 +16,6 @@ function PortfolioPage(props) {
 
 	const fetchPortfolio = () => {
 		authenticatedRequest("GET", "api/portfolio")
-			.then((Response) => Response.json())
 			.then((portfolio) => {
 				setPortfolioItems(portfolio);
 			})

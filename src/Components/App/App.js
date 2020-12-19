@@ -16,6 +16,11 @@ import "./App.css";
  * @component
  */
 function App(props) {
+	const getLoginComponent = ({ history, location }) => {
+		const referrer = location.state ? location.state.referrer : false;
+		return <LoginPage referrer={referrer} push={history.push} />;
+	};
+
 	return (
 		<div className="App">
 			<ApplicationError>
@@ -24,12 +29,17 @@ function App(props) {
 						<Route exact path="/" component={SplashPage} />
 						<Route path="/portfolio" component={PortfolioPage} />
 						<Route path="/search" component={SearchPage} />
-						<Route path="/login" component={LoginPage} />
+						<Route
+							path="/login"
+							component={(props) => {
+								return getLoginComponent(props);
+							}}
+						/>
 						<Route
 							path="/logout"
 							component={(props) => {
 								authenticatedRequest("GET", "api/auth/logout");
-								return <LoginPage />;
+								return getLoginComponent(props);
 							}}
 						/>
 						{/* authenticatedRequest("GET", "api/auth/logout"); */}

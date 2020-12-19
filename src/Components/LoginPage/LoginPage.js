@@ -12,10 +12,7 @@ import FullHeaderPage from "../FullHeaderPage/FullHeaderPage";
  * @component
  */
 function LoginPage(props) {
-	const referrer =
-		typeof props.location.state === "undefined"
-			? false
-			: props.location.state.referrer;
+	const { referrer, push } = props;
 
 	const [showReferrerInterstitial, setShowReferrerInterstitial] = useState(
 		referrer
@@ -25,7 +22,7 @@ function LoginPage(props) {
 		<FullHeaderPage>
 			<>
 				<img src={man} alt="man in chair looking for stocks" />
-				<Login reRoute={(path) => props.history.push(path)} />
+				<Login reRoute={(path) => push(path)} />
 				{!!showReferrerInterstitial && (
 					<Intermodal>
 						<p>You are not logged in.</p>
