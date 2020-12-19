@@ -7,6 +7,7 @@ import SearchPage from "../Search/SearchPage/SearchPage";
 import PortfolioPage from "../Portfolio/PortfolioPage/PortfolioPage";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import NavBar from "../NavBar/NavBar";
+import { authenticatedRequest } from "../../Utils/api/serverRequest";
 import "./App.css";
 
 /**
@@ -24,7 +25,14 @@ function App(props) {
 						<Route path="/portfolio" component={PortfolioPage} />
 						<Route path="/search" component={SearchPage} />
 						<Route path="/login" component={LoginPage} />
-						<Route path="/logout" component={LoginPage} />
+						<Route
+							path="/logout"
+							component={(props) => {
+								authenticatedRequest("GET", "api/auth/logout");
+								return <LoginPage />;
+							}}
+						/>
+						{/* authenticatedRequest("GET", "api/auth/logout"); */}
 						<Route component={NotFoundPage} />
 					</Switch>
 				</main>

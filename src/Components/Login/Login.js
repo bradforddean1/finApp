@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import CtaButton from "../Common/ButtonCta/ButtonCta";
-import { request, authenticatedRequest } from "../../Utils/api/serverRequest";
+import ButtonCta from "../Common/ButtonCta/ButtonCta";
+import Intermodal from "../Common/Intermodal/Intermodal";
+import { request } from "../../Utils/api/serverRequest";
 import "./Login.css";
 
 /**
@@ -13,15 +14,8 @@ function Login(props) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [valError, setError] = useState();
-
-	useEffect(() => {
-		// logged in?  use state
-		// if logged in log out
-		// ***
-		if (true) {
-			authenticatedRequest("GET", "api/auth/logout");
-		}
-	}, []);
+	const [showIntermodal, setShowIntermodal] = useState(false);
+	const [intermodalContent, setIntermodalContent] = useState();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -35,8 +29,87 @@ function Login(props) {
 				props.reRoute("/search");
 			})
 			.catch((error) => {
-				if (error.message === "UNAUTHORIZED") {
-					setError("Invalid login, please try again.");
+				if (error.type === "UNAUTHORIZED") {
+					switch (error.message.status) {
+						case "already logged in":
+							props.reRoute("/search");
+							break;
+						case "unregistered":
+							setIntermodalContent(
+								<>
+									<p>
+										The username: {username} does not already exist. Would you
+										like to register as {username} with provided passowrd?
+									</p>
+									<ButtonCta tag="button" onClick={handleRegister}>
+										Register
+									</ButtonCta>
+									<ButtonCta
+										tag="button"
+										onClick={() => setShowIntermodal(false)}
+									>
+										Try Again
+									</ButtonCta>
+								</>
+							);
+							setShowIntermodal(true);
+							break;
+						default:
+							setError("Invalid login, please try again.");
+							break;
+					}
+				} else {
+					setError("Unexpected error, please try again later");
+				}
+			});
+	};
+
+	const handleRegister = () => {
+		setShowIntermodal(false);
+
+		const body = { username: username, password: password };
+		request("GET", "api/auth/register", body)
+			.then(() => {
+				props.reRoute("/search");
+			})
+			.catch((error) => {
+				if (error.type === "REQUESTERROR") {
+					switch (error.message.status) {
+						case "user exists":
+							setIntermodalContent(
+								<>
+									<p>
+										The username: {username} already exists. Please try another
+										unsername.
+									</p>
+									<ButtonCta
+										tag="button"
+										onClick={() => setShowIntermodal(false)}
+									>
+										Go Back
+									</ButtonCta>
+								</>
+							);
+							setShowIntermodal(true);
+							break;
+						case "invalid password":
+							setIntermodalContent(
+								<>
+									<p>{error.message.valErrors}</p>
+									<ButtonCta
+										tag="button"
+										onClick={() => setShowIntermodal(false)}
+									>
+										Go Back
+									</ButtonCta>
+								</>
+							);
+							setShowIntermodal(true);
+							break;
+						default:
+							setError("Invalid login, please try again.");
+							break;
+					}
 				} else {
 					setError("Unexpected error, please try again later");
 				}
@@ -62,14 +135,17 @@ function Login(props) {
 				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<div>{valError}</div>
-			<CtaButton
+			<ButtonCta
 				className="cta"
 				tag="button"
 				type="button"
 				onClick={handleSubmit}
 			>
 				Login / Signup
-			</CtaButton>
+			</ButtonCta>
+			<Intermodal show={showIntermodal} close={() => setShowIntermodal(false)}>
+				{intermodalContent}
+			</Intermodal>
 		</div>
 	);
 }

@@ -1,3 +1,5 @@
+import { SERVER_ROOT } from "../../config";
+
 const request = (method, endpoint, body) => {
 	const headers = new Headers();
 	headers.append("Content-Type", "application/json");
@@ -15,14 +17,17 @@ const request = (method, endpoint, body) => {
 		Object.assign(requestOptions, { body });
 	}
 
-	const BASE_URL = `https://polar-fjord-49637.herokuapp.com/`;
-	const url = BASE_URL.concat(endpoint);
+	const url = SERVER_ROOT.concat("/", endpoint);
 
 	return fetch(url, requestOptions).then((response) => {
 		if (response.status === 401) {
-			throw new Error("UNAUTHORIZED");
+			const err = new Error(response.json());
+			err.type = "UNAUTHORIZED";
+			throw err;
 		} else if (!response.ok) {
-			throw new Error("REQUESTERROR");
+			const err = new Error(response.json());
+			err.type = "REQUESTERROR";
+			throw err;
 		}
 		return response;
 	});
