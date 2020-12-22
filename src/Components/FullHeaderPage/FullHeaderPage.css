@@ -4,7 +4,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: 100% 176px;
 }
 
 .FullHeaderPage h1 {
@@ -13,6 +13,8 @@
 }
 
 .FullHeaderPage .slogan {
+	margin-right: 20px;
+
 	font-family: Futura;
 	font-weight: 500;
 	font-size: 24px;

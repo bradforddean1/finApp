@@ -7,12 +7,50 @@
 	justify-content: center;
 	width: 100vw;
 	height: 100vh;
-	background-color: purple;
+	padding: 24px;
+}
+
+.Intermodal .background {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: #e5e5e5;
+	opacity: 0.8;
 }
 
 .intermodal-box {
 	position: relative;
 	width: 300px;
-	min-height: 100px;
-	padding: 25px;
+	min-height: 50px;
+	padding: 38px;
+	background-color: #000000;
+	opacity: 1;
+	border-radius: 4px;
+
+	font-family: Futura;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 24px;
+	text-align: center;
+	color: #ffffff;
+}
+
+.Intermodal p {
+	margin-bottom: 16px;
+}
+
+.intermodal-button {
+	padding: 8px 24px;
+	min-width: 95px;
+	height: 32px;
+	background-color: #46d16d;
+	border-radius: 2px;
+	margin: 4px;
+
+	font-family: Sofia Pro;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 134.77%;
+	color: #000000;
 }

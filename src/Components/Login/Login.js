@@ -15,7 +15,15 @@ function Login(props) {
 	const [password, setPassword] = useState("");
 	const [valError, setError] = useState();
 	const [showIntermodal, setShowIntermodal] = useState(false);
-	const [intermodalContent, setIntermodalContent] = useState();
+	const [intermodalContent, setIntermodalContent] = useState({
+		children: null,
+		buttons: [],
+	});
+
+	const launchModal = (content) => {
+		setIntermodalContent(content);
+		setShowIntermodal(true);
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -30,31 +38,31 @@ function Login(props) {
 			})
 			.catch((error) => {
 				if (error.type === "UNAUTHORIZED") {
-					console.log(error.message);
-
 					switch (error.message) {
 						case "already logged in":
 							props.reRoute("/search");
 							break;
 						case "unregistered":
-							setIntermodalContent(
-								<>
+							launchModal({
+								children: (
 									<p>
 										The username: {username} does not already exist. Would you
 										like to register as {username} with provided passowrd?
 									</p>
-									<ButtonCta tag="button" onClick={handleRegister}>
-										Register
-									</ButtonCta>
-									<ButtonCta
-										tag="button"
-										onClick={() => setShowIntermodal(false)}
-									>
-										Try Again
-									</ButtonCta>
-								</>
-							);
-							setShowIntermodal(true);
+								),
+								buttons: [
+									{
+										tag: "button",
+										onClick: handleRegister,
+										children: "Register",
+									},
+									{
+										tag: "button",
+										onClick: () => setShowIntermodal(false),
+										children: "Try Again",
+									},
+								],
+							});
 							break;
 						default:
 							setError("Invalid login, please try again.");
@@ -78,35 +86,43 @@ function Login(props) {
 				if (error.type === "REQUESTERROR") {
 					switch (error.message.status) {
 						case "user exists":
-							setIntermodalContent(
-								<>
+							launchModal({
+								children: (
 									<p>
 										The username: {username} already exists. Please try another
 										unsername.
 									</p>
-									<ButtonCta
-										tag="button"
-										onClick={() => setShowIntermodal(false)}
-									>
-										Go Back
-									</ButtonCta>
-								</>
-							);
-							setShowIntermodal(true);
+								),
+								buttons: [
+									{
+										tag: "button",
+										onClick: handleRegister,
+										children: "Register",
+									},
+									{
+										tag: "button",
+										onClick: () => setShowIntermodal(false),
+										children: "Go Back",
+									},
+								],
+							});
 							break;
 						case "invalid password":
-							setIntermodalContent(
-								<>
-									<p>{error.passValErrors}</p>
-									<ButtonCta
-										tag="button"
-										onClick={() => setShowIntermodal(false)}
-									>
-										Go Back
-									</ButtonCta>
-								</>
-							);
-							setShowIntermodal(true);
+							launchModal({
+								children: <p>{error.passValErrors}</p>,
+								buttons: [
+									{
+										tag: "button",
+										onClick: handleRegister,
+										children: "Register",
+									},
+									{
+										tag: "button",
+										onClick: () => setShowIntermodal(false),
+										children: "Go Back",
+									},
+								],
+							});
 							break;
 						default:
 							setError("Invalid login, please try again.");
@@ -136,7 +152,7 @@ function Login(props) {
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<div>{valError}</div>
+			<div className="val-error">{valError}</div>
 			<ButtonCta
 				className="cta"
 				tag="button"
@@ -145,8 +161,12 @@ function Login(props) {
 			>
 				Login / Signup
 			</ButtonCta>
-			<Intermodal show={showIntermodal} close={() => setShowIntermodal(false)}>
-				{intermodalContent}
+			<Intermodal
+				show={showIntermodal}
+				close={() => setShowIntermodal(false)}
+				buttons={intermodalContent.buttons}
+			>
+				{intermodalContent.children}
 			</Intermodal>
 		</div>
 	);

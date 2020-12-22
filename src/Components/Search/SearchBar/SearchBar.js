@@ -22,13 +22,27 @@ function SearchBar(props) {
 				props.resultsCallback(result.profile);
 			})
 			.catch((err) => {
-				if (err.message === "UNAUTHORIZED") {
+				if (err.type === "UNAUTHORIZED") {
 					<Redirect
 						to={{
 							pathname: "/login",
 							state: { referrer: "servAuthError" },
 						}}
 					/>;
+				} else if (err.type === "REQUESTERROR") {
+					switch (err.message) {
+						case "no match":
+							setValError(`No match found for ${ticker}.`);
+							break;
+						case "invalid format":
+							setValError("Ticker can be a maximum of 6 characters");
+							break;
+						default:
+							setValError("Unexpected error, try again");
+							break;
+					}
+				} else {
+					throw err;
 				}
 			});
 	};
@@ -46,7 +60,7 @@ function SearchBar(props) {
 			<button className="form-button" type="button" onClick={handleSubmit}>
 				<Search color={"#000"} />
 			</button>
-			<div>{valError}</div>
+			<div className="val-error">{valError}</div>
 		</div>
 	);
 }

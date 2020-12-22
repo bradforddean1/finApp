@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createElement } from "react";
 import PropTypes from "prop-types";
 import ButtonX from "../ButtonX/ButtonX";
 import "./Intermodal.css";
@@ -9,15 +9,29 @@ import "./Intermodal.css";
  */
 
 function Intermodal(props) {
-	const { close, show, children } = props;
+	const { close, show, children, buttons } = props;
 
 	const makeIntermodalContent = () => {
 		if (show) {
 			return (
 				<div className="Intermodal">
+					<div className="background"></div>
 					<div className="intermodal-box">
 						<ButtonX handleClick={close} />
 						{children}
+						{!!buttons &&
+							buttons.map((button) => {
+								const { tag, children, className, ...otherProps } = button;
+								console.log(button);
+								return createElement(
+									tag,
+									{
+										className: ["intermodal-button", className].join(" "),
+										...otherProps,
+									},
+									children
+								);
+							})}
 					</div>
 				</div>
 			);
@@ -38,6 +52,21 @@ Intermodal.propTypes = {
 	 * Is intermodal being displayed
 	 */
 	show: PropTypes.bool,
+	/**
+	 * List of action Buttons to be implemented
+	 */
+	buttons: PropTypes.arrayOf(
+		PropTypes.shape({
+			tag: PropTypes.string.isRequired,
+			className: PropTypes.string,
+			onClick: PropTypes.func,
+			href: PropTypes.string,
+			children: PropTypes.oneOf([
+				PropTypes.element,
+				PropTypes.arrayOf(PropTypes.element),
+			]),
+		})
+	),
 	children: PropTypes.element,
 };
 

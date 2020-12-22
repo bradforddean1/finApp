@@ -51,6 +51,7 @@ const request = (method, endpoint, body) => {
 				err.type = "REQUESTERROR";
 				throw err;
 			}
+
 			return response.body;
 		});
 };

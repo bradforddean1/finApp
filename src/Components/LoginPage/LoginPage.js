@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Login from "../Login/Login";
-import ButtonCta from "../Common/ButtonCta/ButtonCta";
 import Intermodal from "../Common/Intermodal/Intermodal";
 import man from "../../assets/man1.svg";
 import "./LoginPage.css";
@@ -23,17 +22,20 @@ function LoginPage(props) {
 			<>
 				<img src={man} alt="man in chair looking for stocks" />
 				<Login reRoute={(path) => push(path)} />
-				{!!showReferrerInterstitial && (
-					<Intermodal>
-						<p>You are not logged in.</p>
-						<ButtonCta
-							tag="button"
-							onClick={() => setShowReferrerInterstitial(false)}
-						>
-							Login
-						</ButtonCta>
-					</Intermodal>
-				)}
+				<Intermodal
+					show={showReferrerInterstitial}
+					close={() => setShowReferrerInterstitial(false)}
+					buttons={[
+						{
+							tag: "button",
+							onClick: () => setShowReferrerInterstitial(false),
+
+							children: "Login",
+						},
+					]}
+				>
+					<p>You are not logged in.</p>
+				</Intermodal>
 			</>
 		</FullHeaderPage>
 	);

@@ -3,7 +3,40 @@
 	flex-direction: column;
 }
 
-.Login input,
+.Login input {
+	margin-bottom: 8px;
+}
+
 .Login button {
 	margin-bottom: 24px;
+}
+
+.Login .val-error {
+	margin-bottom: 12px;
+	height: 12px;
+
+	font-family: Sofia Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 12px;
+	color: #000000;
+}
+
+.Login .credentials {
+	display: block;
+	margin-bottom: 4px;
+}
+
+.Login h2 {
+	margin-bottom: 8px;
+
+	font-family: Futura;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 32px;
+	text-align: center;
+
+	color: #000000;
 }

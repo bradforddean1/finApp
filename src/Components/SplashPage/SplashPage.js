@@ -12,8 +12,20 @@ function SplashPage(props) {
 		<FullHeaderPage>
 			<div className="panel">
 				<p>
-					I am a splash page and I am supposed to tele you about this app...
+					Ztock is here to pull realtime quotes with key financial metrics for
+					domestic stocks. Search for a stock with a valid ticker symbol and
+					you'll get a real time quote with the copanies profile and ket
+					financial indicators. You can choose to add the stock to your
+					portfolio to monitor an unlimited number of stocks.
 				</p>
+
+				<p>
+					You'll need an account to access Ztocks featutres. You can create your
+					own or use the demo account to take a look around.
+				</p>
+				<h2>Demo User:</h2>
+				<span className="credentials">User: demo</span>
+				<span className="credentials">Password: testing123</span>
 
 				<ButtonCta className="cta" tag="a" href="/login">
 					Go Forth

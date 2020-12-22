@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
+import { Redirect } from "react-router-dom";
 import Header from "../ProfileHeader/ProfileHeader";
 import Card from "../ProfileCard/ProfileCard";
 import ProfileContext from "./Profile.context";
 import ButtonAdd from "../../Common/ButtonAdd/ButtonAdd";
-import ButtonCta from "../../Common/ButtonCta/ButtonCta";
 import Intermodal from "../../Common/Intermodal/Intermodal";
-import { authenticatedRequest } from "../../../Utils/api/serverRequest";
+import { request } from "../../../Utils/api/serverRequest";
 import "./Profile.css";
 
 /**
@@ -15,7 +15,10 @@ import "./Profile.css";
 
 function Profile(props) {
 	const [showIntermodal, setShowIntermodal] = useState(false);
-	const [intermodalContent, setIntermodalContent] = useState();
+	const [intermodalContent, setIntermodalContent] = useState({
+		children: null,
+		buttons: [],
+	});
 
 	const {
 		name,
@@ -47,8 +50,13 @@ function Profile(props) {
 		currentRatioQuarterly,
 	} = useContext(ProfileContext);
 
+	const launchModal = (content) => {
+		setIntermodalContent(content);
+		setShowIntermodal(true);
+	};
+
 	const handleUndo = () => {
-		// setShowIntermodal(false);
+		setShowIntermodal(false);
 		// authenticatedRequest("POST", endpoint, body).then((Response) => {
 		// 	if (Response.status === 201) {
 		// 	}
@@ -59,22 +67,44 @@ function Profile(props) {
 		const endpoint = "api/portfolio";
 		const body = { ticker: ticker };
 
-		authenticatedRequest("POST", endpoint, body).then((Response) => {
-			if (Response.status === 201) {
-				setIntermodalContent(
-					<>
-						<p>{ticker} has been added to your portfolio</p>
-						<ButtonCta tag="button" onClick={handleUndo}>
-							Undo
-						</ButtonCta>
-						<ButtonCta tag="a" href="/portfolio">
-							Go To Portfolio
-						</ButtonCta>
-					</>
-				);
-				setShowIntermodal(true);
-			}
-		});
+		request("POST", endpoint, body)
+			.then((Response) => {
+				launchModal({
+					children: <p>{ticker} has been added to your portfolio</p>,
+					buttons: [
+						{ tag: "button", children: "Undo", onClick: handleUndo },
+						{ tag: "a", children: "Go To Portfolio", href: "/portfolio" },
+					],
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+				if (err.type === "UNAUTHORIZED") {
+					<Redirect
+						to={{
+							pathname: "/login",
+							state: { referrer: "servAuthError" },
+						}}
+					/>;
+				} else {
+					launchModal({
+						children: (
+							<p>
+								{err.message === "ticker already exists for user"
+									? `${ticker} is already in this portfolio`
+									: `Unable to add ${ticker} to portfolio.`}
+							</p>
+						),
+						buttons: [
+							{
+								tag: "button",
+								children: "Go Back",
+								onClick: () => setShowIntermodal(false),
+							},
+						],
+					});
+				}
+			});
 	};
 
 	return (
@@ -140,8 +170,12 @@ function Profile(props) {
 				]}
 			/>
 			<ButtonAdd className="add" tag="button" handleClick={addToPortfolio} />
-			<Intermodal show={showIntermodal} close={() => setShowIntermodal(false)}>
-				{intermodalContent}
+			<Intermodal
+				show={showIntermodal}
+				close={() => setShowIntermodal(false)}
+				buttons={intermodalContent.buttons}
+			>
+				{intermodalContent.children}
 			</Intermodal>
 		</div>
 	);
