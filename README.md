@@ -14,4 +14,4 @@ Use of app requires a valid login that can be obtained with an email address.
 
 ## Technology
 
-React.js 
+Jvascript, React.js 
