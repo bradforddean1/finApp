@@ -125,7 +125,7 @@ function Profile(props) {
 			<Card
 				title="Segment"
 				metrics={["Industry", "Market Capitalization", "Shares Outstanding"]}
-				values={[finnhubIndustry, marketCapitalization, shareOutstanding]}
+				values={[finnhubIndustry, marketCapitalization.toString(), shareOutstanding.toString()]}
 			/>
 			<Card
 				title="Stablity"

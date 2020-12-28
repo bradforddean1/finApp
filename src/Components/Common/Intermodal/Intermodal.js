@@ -10,7 +10,7 @@ import "./Intermodal.css";
 
 function Intermodal(props) {
 	const { close, show, children, buttons } = props;
-
+	
 	const makeIntermodalContent = () => {
 		if (show) {
 			return (
@@ -61,9 +61,10 @@ Intermodal.propTypes = {
 			className: PropTypes.string,
 			onClick: PropTypes.func,
 			href: PropTypes.string,
-			children: PropTypes.oneOf([
+			children: PropTypes.oneOfType([
 				PropTypes.element,
 				PropTypes.arrayOf(PropTypes.element),
+				PropTypes.string
 			]),
 		})
 	),
