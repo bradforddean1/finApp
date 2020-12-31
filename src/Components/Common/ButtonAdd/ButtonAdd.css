@@ -6,5 +6,6 @@
 	width: 56px;
 	background: #51ff82;
 	border: 2px solid #000000;
+	border-radius: 90px;
 	box-sizing: border-box;
 }

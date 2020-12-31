@@ -12,8 +12,8 @@ function ButtonAdd(props) {
 	return (
 		<button className="ButtonAdd" type="button" onClick={handleClick}>
 			<svg
-				width="57"
-				height="57"
+				width="100%"
+				height="100%"
 				viewBox="0 0 57 57"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"

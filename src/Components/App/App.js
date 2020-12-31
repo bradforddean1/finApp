@@ -7,7 +7,7 @@ import SearchPage from "../Search/SearchPage/SearchPage";
 import PortfolioPage from "../Portfolio/PortfolioPage/PortfolioPage";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import NavBar from "../NavBar/NavBar";
-import { authenticatedRequest } from "../../Utils/api/serverRequest";
+import { request } from "../../Utils/api/serverRequest";
 import "./App.css";
 
 /**
@@ -18,7 +18,6 @@ import "./App.css";
 function App(props) {
 	const getLoginComponent = ({ history, location }) => {
 		const referrer = location.state ? location.state.referrer : false;
-		console.log(history);
 		return <LoginPage referrer={referrer} push={history.push} />;
 	};
 
@@ -39,13 +38,11 @@ function App(props) {
 						<Route
 							path="/logout"
 							component={(props) => {
-								authenticatedRequest("GET", "api/auth/logout").catch(
-									(error) => {
-										if (!error.type === "UNAUTHORIZED") {
-											throw error;
-										}
+								request("GET", "api/auth/logout").catch((error) => {
+									if (!error.type === "UNAUTHORIZED") {
+										throw error;
 									}
-								);
+								});
 								return (
 									<Redirect
 										to={{
@@ -55,7 +52,7 @@ function App(props) {
 								);
 							}}
 						/>
-						{/* authenticatedRequest("GET", "api/auth/logout"); */}
+						{/* request("GET", "api/auth/logout"); */}
 						<Route component={NotFoundPage} />
 					</Switch>
 				</main>

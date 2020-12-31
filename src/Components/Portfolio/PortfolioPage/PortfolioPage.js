@@ -5,7 +5,7 @@ import PortfolioList from "../PortfolioList/PortfolioList";
 import man from "../../../assets/man2.svg";
 import background from "../../../assets/elipse.svg";
 import "./PortfolioPage.css";
-import { authenticatedRequest } from "../../../Utils/api/serverRequest";
+import { request } from "../../../Utils/api/serverRequest";
 
 /**
  * Portfolio Page displays summary cards for securities saved by user.
@@ -15,7 +15,7 @@ function PortfolioPage(props) {
 	const [portfolioItems, setPortfolioItems] = useState([]);
 
 	const fetchPortfolio = () => {
-		authenticatedRequest("GET", "api/portfolio")
+		request("GET", "api/portfolio")
 			.then((portfolio) => {
 				setPortfolioItems(portfolio);
 			})
@@ -29,6 +29,17 @@ function PortfolioPage(props) {
 					/>;
 				}
 			});
+	};
+
+	const handleDeletedItem = (ticker) => {
+		setPortfolioItems(portfolioItems.filter((item) => item.ticker !== ticker));
+	};
+
+	const deletePortfolioItem = (ticker) => {
+		request("DELETE", `api/portfolio/${ticker}`).then(() => {
+			handleDeletedItem(ticker);
+		});
+		return null;
 	};
 
 	useEffect(() => {
@@ -46,7 +57,10 @@ function PortfolioPage(props) {
 					<img src={man} alt="looking for stocks" />
 				</div>
 			) : (
-				<PortfolioList items={portfolioItems} />
+				<PortfolioList
+					items={portfolioItems}
+					deletePortfolioItem={deletePortfolioItem}
+				/>
 			)}
 		</div>
 	);

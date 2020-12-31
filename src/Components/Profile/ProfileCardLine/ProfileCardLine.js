@@ -18,7 +18,11 @@ function ProfileCardLine(props) {
 
 ProfileCardLine.propTypes = {
 	name: PropTypes.string.isRequired,
-	value: PropTypes.string.isRequired,
+	value: PropTypes.string,
+};
+
+ProfileCardLine.defaultProps = {
+	value: "n/a",
 };
 
 export default ProfileCardLine;

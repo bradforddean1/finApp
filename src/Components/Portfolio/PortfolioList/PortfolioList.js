@@ -8,12 +8,13 @@ import "./PortfolioList.css";
  * @component
  */
 function PortfolioList(props) {
-	const { items } = props;
+	const { items, deletePortfolioItem } = props;
 
 	const makePortfolioCards = () => {
 		return items.map((item) => {
 			return (
 				<PortfolioItem
+					deletePortfolioItem={deletePortfolioItem}
 					key={item.ticker}
 					name={item.name}
 					ticker={item.ticker}
@@ -32,6 +33,7 @@ function PortfolioList(props) {
 }
 
 PortfolioList.propTypes = {
+	deletePortfolioItem: PropTypes.func.isRequired,
 	portfolioItems: PropTypes.arrayOf(
 		PropTypes.shape({
 			name: PropTypes.string.isRequired,

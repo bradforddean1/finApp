@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import ButtonCta from "../Common/ButtonCta/ButtonCta";
 import Intermodal from "../Common/Intermodal/Intermodal";
+import ValidationError from "../Common/ValidationError/ValidationError";
 import { request } from "../../Utils/api/serverRequest";
 import "./Login.css";
 
@@ -152,7 +153,7 @@ function Login(props) {
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<div className="val-error">{valError}</div>
+			<ValidationError>{valError}</ValidationError>
 			<ButtonCta
 				className="cta"
 				tag="button"

@@ -20,17 +20,15 @@ const request = (method, endpoint, body) => {
 	const url = SERVER_ROOT.concat("/", endpoint);
 
 	return fetch(url, requestOptions)
-		.then((r) =>
-			r
-				.json()
+		.then((r) => {
+			r.json()
 				.then((data) => {
 					return { status: r.status, body: data, ok: r.ok };
 				})
 				.catch(() => {
 					return { status: r.status, body: null, ok: r.ok };
-				})
-		)
-
+				});
+		})
 		.then((response) => {
 			if (response.status === 401) {
 				const err = new Error(
@@ -56,18 +54,4 @@ const request = (method, endpoint, body) => {
 		});
 };
 
-const authenticatedRequest = (method, endpoint, body) => {
-	return request(method, endpoint, body).catch((err) => {
-		if (err.message === "UNAUTHORIZED") {
-			// TODO: show error
-			// TODO: redirect to login (may be button on show error)
-			console.log("Invalid login, please try again.");
-			return null;
-		} else {
-			console.log(err);
-			throw err;
-		}
-	});
-};
-
-export { request, authenticatedRequest };
+export { request };

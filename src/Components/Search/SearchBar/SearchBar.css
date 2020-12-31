@@ -1,7 +1,12 @@
 .SearchBar {
 	display: flex;
+	flex-direction: column;
 }
 
+.SearchBar .bar {
+	flex: 1;
+	display: flex;
+}
 .SearchBar input {
 	flex: 1;
 	padding-right: 50px;
@@ -16,16 +21,4 @@
 	padding: 0;
 	background-color: transparent;
 	border: none;
-}
-
-.SearchBar .val-error {
-	margin-bottom: 12px;
-	height: 12px;
-
-	font-family: Sofia Pro;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 12px;
-	line-height: 12px;
-	color: #000000;
 }

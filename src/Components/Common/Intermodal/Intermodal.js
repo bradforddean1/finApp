@@ -20,12 +20,12 @@ function Intermodal(props) {
 						<ButtonX handleClick={close} />
 						{children}
 						{!!buttons &&
-							buttons.map((button) => {
+							buttons.map((button, i) => {
 								const { tag, children, className, ...otherProps } = button;
-								console.log(button);
 								return createElement(
 									tag,
 									{
+										key: i,
 										className: ["intermodal-button", className].join(" "),
 										...otherProps,
 									},
@@ -61,7 +61,8 @@ Intermodal.propTypes = {
 			className: PropTypes.string,
 			onClick: PropTypes.func,
 			href: PropTypes.string,
-			children: PropTypes.oneOf([
+			children: PropTypes.oneOfType([
+				PropTypes.string,
 				PropTypes.element,
 				PropTypes.arrayOf(PropTypes.element),
 			]),

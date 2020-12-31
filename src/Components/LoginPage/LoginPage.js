@@ -29,7 +29,6 @@ function LoginPage(props) {
 						{
 							tag: "button",
 							onClick: () => setShowReferrerInterstitial(false),
-
 							children: "Login",
 						},
 					]}

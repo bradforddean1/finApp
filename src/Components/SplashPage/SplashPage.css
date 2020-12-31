@@ -1,16 +1,26 @@
-.SplashPage,
-.SplashPage .panel {
+.SplashPage {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	height: 100%;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
-.SplashPage button,
+.SplashPage .cta,
 .SplashPage p {
 	margin-bottom: 24px;
 }
 
 .SplashPage p {
 	margin-top: 40px;
+}
+
+.SplashPage .demo {
+	text-align: center;
+}
+
+.SplashPage .credentials {
+	display: block;
+	margin-top: 8px;
 }

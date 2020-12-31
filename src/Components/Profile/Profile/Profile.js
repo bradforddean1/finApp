@@ -57,7 +57,7 @@ function Profile(props) {
 
 	const handleUndo = () => {
 		setShowIntermodal(false);
-		// authenticatedRequest("POST", endpoint, body).then((Response) => {
+		// request("POST", endpoint, body).then((Response) => {
 		// 	if (Response.status === 201) {
 		// 	}
 		// });
@@ -78,7 +78,6 @@ function Profile(props) {
 				});
 			})
 			.catch((err) => {
-				console.log(err);
 				if (err.type === "UNAUTHORIZED") {
 					<Redirect
 						to={{
@@ -125,7 +124,11 @@ function Profile(props) {
 			<Card
 				title="Segment"
 				metrics={["Industry", "Market Capitalization", "Shares Outstanding"]}
-				values={[finnhubIndustry, marketCapitalization, shareOutstanding]}
+				values={[
+					finnhubIndustry,
+					marketCapitalization.toString(),
+					shareOutstanding.toString(),
+				]}
 			/>
 			<Card
 				title="Stablity"

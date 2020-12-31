@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-import { authenticatedRequest } from "../../../Utils/api/serverRequest";
+import { request } from "../../../Utils/api/serverRequest";
 import Search from "../../Common/icons/SearchIcon/SearchIcon";
+import ValidationError from "../../Common/ValidationError/ValidationError";
 import "./SearchBar.css";
 
 /**
@@ -17,8 +18,13 @@ function SearchBar(props) {
 		e.preventDefault();
 		setValError("");
 		const endpoint = `api/quote/${ticker}/profile`;
-		authenticatedRequest("GET", endpoint)
+		request("GET", endpoint)
 			.then((result) => {
+				if (result.status === "no match") {
+					const err = new Error(result.status);
+					err.type = "REQUESTERROR";
+					throw err;
+				}
 				props.resultsCallback(result.profile);
 			})
 			.catch((err) => {
@@ -49,18 +55,20 @@ function SearchBar(props) {
 
 	return (
 		<div className="SearchBar">
-			<input
-				type="text"
-				name="ticker"
-				id="ticker"
-				placeholder="Search by ticker symbol..."
-				value={ticker}
-				onChange={(e) => setTicker(e.target.value)}
-			/>
-			<button className="form-button" type="button" onClick={handleSubmit}>
-				<Search color={"#000"} />
-			</button>
-			<div className="val-error">{valError}</div>
+			<div className="bar">
+				<input
+					type="text"
+					name="ticker"
+					id="ticker"
+					placeholder="Search by ticker symbol..."
+					value={ticker}
+					onChange={(e) => setTicker(e.target.value)}
+				/>
+				<button className="form-button" type="button" onClick={handleSubmit}>
+					<Search color={"#000"} />
+				</button>
+			</div>
+			<ValidationError>{valError}</ValidationError>
 		</div>
 	);
 }

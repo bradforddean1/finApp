@@ -11,18 +11,6 @@
 	margin-bottom: 24px;
 }
 
-.Login .val-error {
-	margin-bottom: 12px;
-	height: 12px;
-
-	font-family: Sofia Pro;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 12px;
-	line-height: 12px;
-	color: #000000;
-}
-
 .Login .credentials {
 	display: block;
 	margin-bottom: 4px;
