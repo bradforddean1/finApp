@@ -62,9 +62,9 @@ Intermodal.propTypes = {
 			onClick: PropTypes.func,
 			href: PropTypes.string,
 			children: PropTypes.oneOfType([
-				PropTypes.string,
 				PropTypes.element,
 				PropTypes.arrayOf(PropTypes.element),
+				PropTypes.string,
 			]),
 		})
 	),
