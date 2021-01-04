@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import headerbg from "../../assets/header.svg";
 import logo from "../../assets/ztok.svg";
-import "./FullHeaderPage.css";
+import "./FullHeaderPage.scss";
 
 /**
  * Page outline with full branded header.

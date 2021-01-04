@@ -1,5 +1,5 @@
 import { createElement } from "react";
-import "./ButtonCta.css";
+import "./ButtonCta.scss";
 import PropTypes from "prop-types";
 
 /**

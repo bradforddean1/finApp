@@ -1,0 +1,9 @@
+@use "../../../scss/variables" as v;
+
+.Profile {
+	display: flex;
+	flex-direction: column;
+	padding-top: 4px;
+	margin-left: v.$gutter;
+	margin-right: v.$gutter;
+}

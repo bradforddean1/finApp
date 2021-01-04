@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import Profile from "../../Profile/Profile/Profile";
 import ProfileContext from "../../Profile/Profile/Profile.context";
+import PropTypes from "prop-types";
 import man from "../../../assets/man3.svg";
-import "./SearchPage.css";
+import "./SearchPage.scss";
 
 /**
  * Search Page - Implements lookup functionality for securities by symbol and displays quotes with company profile.
@@ -29,5 +30,9 @@ function SearchPage(props) {
 		</div>
 	);
 }
+
+SearchPage.propTypes = {
+	history: PropTypes.shape({ push: PropTypes.func.isRequired }),
+};
 
 export default SearchPage;

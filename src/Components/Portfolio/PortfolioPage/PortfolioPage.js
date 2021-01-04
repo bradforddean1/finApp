@@ -1,54 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import React from "react";
+import { useApi } from "../../../hooks/useApi";
 import PropTypes from "prop-types";
 import PortfolioList from "../PortfolioList/PortfolioList";
 import man from "../../../assets/man2.svg";
 import background from "../../../assets/elipse.svg";
-import "./PortfolioPage.css";
-import { request } from "../../../Utils/api/serverRequest";
+import "./PortfolioPage.scss";
+import {
+	getPortfolioItems,
+	deletePortfolioItem,
+} from "../../../api/serverRequest";
 
 /**
  * Portfolio Page displays summary cards for securities saved by user.
  * @component
  */
 function PortfolioPage(props) {
-	const [portfolioItems, setPortfolioItems] = useState([]);
+	const portfolioItems = useApi(getPortfolioItems);
 
-	const fetchPortfolio = () => {
-		request("GET", "api/portfolio")
-			.then((portfolio) => {
-				setPortfolioItems(portfolio);
-			})
-			.catch((err) => {
-				if (err.message === "UNAUTHORIZED") {
-					<Redirect
-						to={{
-							pathname: "/login",
-							state: { referrer: "servAuthError" },
-						}}
-					/>;
-				}
-			});
-	};
+	const [isLoading, data, error] = portfolioItems.initial();
+
+	// const history = useHistory();
 
 	const handleDeletedItem = (ticker) => {
-		setPortfolioItems(portfolioItems.filter((item) => item.ticker !== ticker));
+		portfolioItems.update(data.filter((item) => item.ticker !== ticker));
 	};
-
-	const deletePortfolioItem = (ticker) => {
-		request("DELETE", `api/portfolio/${ticker}`).then(() => {
-			handleDeletedItem(ticker);
-		});
-		return null;
-	};
-
-	useEffect(() => {
-		fetchPortfolio();
-	}, []);
 
 	return (
 		<div className="PortfolioPage page">
-			{portfolioItems.length < 1 ? (
+			{!!isLoading && <div>Loading</div>}
+			{data.length < 1 ? (
 				<div
 					className="empty-portfolio"
 					style={{ backgroundImage: `url(${background})` }}
@@ -58,8 +38,10 @@ function PortfolioPage(props) {
 				</div>
 			) : (
 				<PortfolioList
-					items={portfolioItems}
-					deletePortfolioItem={deletePortfolioItem}
+					items={data}
+					deletePortfolioItem={(ticker) =>
+						deletePortfolioItem(ticker, handleDeletedItem)
+					}
 				/>
 			)}
 		</div>

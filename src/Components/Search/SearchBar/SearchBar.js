@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
-import { request } from "../../../Utils/api/serverRequest";
+import { getTickerProfile } from "../../../api/serverRequest";
 import Search from "../../Common/icons/SearchIcon/SearchIcon";
 import ValidationError from "../../Common/ValidationError/ValidationError";
-import "./SearchBar.css";
+import "./SearchBar.scss";
 
 /**
  * Search Bar Form for securties lookup, queries and returns server response.
@@ -13,48 +13,34 @@ import "./SearchBar.css";
 function SearchBar(props) {
 	const [ticker, setTicker] = useState("");
 	const [valError, setValError] = useState();
+	const [isLoading, setIsLoading] = useState(false);
+
+	const history = useHistory();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setValError("");
-		const endpoint = `api/quote/${ticker}/profile`;
-		request("GET", endpoint)
-			.then((result) => {
-				if (result.status === "no match") {
-					const err = new Error(result.status);
-					err.type = "REQUESTERROR";
-					throw err;
-				}
-				props.resultsCallback(result.profile);
+		setIsLoading(true);
+		getTickerProfile(ticker)
+			.then((data) => {
+				setIsLoading(false);
+				props.resultsCallback(data);
 			})
 			.catch((err) => {
 				if (err.type === "UNAUTHORIZED") {
-					<Redirect
-						to={{
-							pathname: "/login",
-							state: { referrer: "servAuthError" },
-						}}
-					/>;
+					history.push("/Auth-error");
 				} else if (err.type === "REQUESTERROR") {
-					switch (err.message) {
-						case "no match":
-							setValError(`No match found for ${ticker}.`);
-							break;
-						case "invalid format":
-							setValError("Ticker can be a maximum of 6 characters");
-							break;
-						default:
-							setValError("Unexpected error, try again");
-							break;
-					}
+					setValError(err.message);
 				} else {
 					throw err;
 				}
+				setIsLoading(false);
 			});
 	};
 
 	return (
 		<div className="SearchBar">
+			{isLoading ? <div>Loading</div> : null}
 			<div className="bar">
 				<input
 					type="text"

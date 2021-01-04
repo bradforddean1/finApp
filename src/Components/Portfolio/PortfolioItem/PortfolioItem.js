@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import SecurityId from "../../Common/SecurityId/SecurityId";
 import Quote from "../../Common/Quote/Quote";
 import ButtonX from "../../Common/ButtonX/ButtonX";
-import "./PortfolioItem.css";
+import "./PortfolioItem.scss";
 /**
  * Securtiy quote card for the portfolio list
  * @component

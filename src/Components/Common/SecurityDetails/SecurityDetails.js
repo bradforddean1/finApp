@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import World from "../../Common/icons/WorldIcon/WorldIcon";
-import "./SecurityDetails.css";
+import "./SecurityDetails.scss";
 
 /**
  * Footer of the header card with basic security summary.

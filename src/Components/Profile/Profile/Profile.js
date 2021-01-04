@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Header from "../ProfileHeader/ProfileHeader";
 import Card from "../ProfileCard/ProfileCard";
 import ProfileContext from "./Profile.context";
 import ButtonAdd from "../../Common/ButtonAdd/ButtonAdd";
 import Intermodal from "../../Common/Intermodal/Intermodal";
-import { request } from "../../../Utils/api/serverRequest";
-import "./Profile.css";
+import {
+	addToPortfolio,
+	deletePortfolioItem,
+} from "../../../api/serverRequest";
+import "./Profile.scss";
 
 /**
  * Display securities Profile from Profile context
@@ -19,6 +22,7 @@ function Profile(props) {
 		children: null,
 		buttons: [],
 	});
+	const history = useHistory();
 
 	const {
 		name,
@@ -57,18 +61,12 @@ function Profile(props) {
 
 	const handleUndo = () => {
 		setShowIntermodal(false);
-		// request("POST", endpoint, body).then((Response) => {
-		// 	if (Response.status === 201) {
-		// 	}
-		// });
+		deletePortfolioItem(ticker);
 	};
 
-	const addToPortfolio = () => {
-		const endpoint = "api/portfolio";
-		const body = { ticker: ticker };
-
-		request("POST", endpoint, body)
-			.then((Response) => {
+	const handleAddToPortfolio = () => {
+		addToPortfolio(ticker)
+			.then(() => {
 				launchModal({
 					children: <p>{ticker} has been added to your portfolio</p>,
 					buttons: [
@@ -79,12 +77,7 @@ function Profile(props) {
 			})
 			.catch((err) => {
 				if (err.type === "UNAUTHORIZED") {
-					<Redirect
-						to={{
-							pathname: "/login",
-							state: { referrer: "servAuthError" },
-						}}
-					/>;
+					history.push("/Auth-error");
 				} else {
 					launchModal({
 						children: (
@@ -107,7 +100,7 @@ function Profile(props) {
 	};
 
 	return (
-		<div className="Profile panel">
+		<div className="Profile">
 			<Header
 				name={name}
 				ticker={ticker}
@@ -172,7 +165,11 @@ function Profile(props) {
 					dividendGrowthRate5Y,
 				]}
 			/>
-			<ButtonAdd className="add" tag="button" handleClick={addToPortfolio} />
+			<ButtonAdd
+				className="add"
+				tag="button"
+				handleClick={handleAddToPortfolio}
+			/>
 			<Intermodal
 				show={showIntermodal}
 				close={() => setShowIntermodal(false)}

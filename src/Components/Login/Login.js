@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import ButtonCta from "../Common/ButtonCta/ButtonCta";
 import Intermodal from "../Common/Intermodal/Intermodal";
 import ValidationError from "../Common/ValidationError/ValidationError";
-import { request } from "../../Utils/api/serverRequest";
-import "./Login.css";
+import { login, register } from "../../api/serverRequest";
+import "./Login.scss";
 
 /**
  * Login a User, auto logs out existing user on render.
@@ -28,13 +28,10 @@ function Login(props) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
 		setError("");
 
-		const body = { username: username, password: password };
-
-		request("POST", "api/auth/login", body)
-			.then((result) => {
+		login(username, password)
+			.then(() => {
 				props.reRoute("/search");
 			})
 			.catch((error) => {
@@ -78,8 +75,7 @@ function Login(props) {
 	const handleRegister = () => {
 		setShowIntermodal(false);
 
-		const body = { username: username, password: password };
-		request("POST", "api/auth/register", body)
+		register(username, password)
 			.then(() => {
 				props.reRoute("/search");
 			})
@@ -110,13 +106,13 @@ function Login(props) {
 							break;
 						case "invalid password":
 							launchModal({
-								children: <p>{error.passValErrors}</p>,
+								children: (
+									<p>
+										Password doen not meet min requirements:{" "}
+										{error.passValErrors}
+									</p>
+								),
 								buttons: [
-									{
-										tag: "button",
-										onClick: handleRegister,
-										children: "Register",
-									},
 									{
 										tag: "button",
 										onClick: () => setShowIntermodal(false),
@@ -136,7 +132,7 @@ function Login(props) {
 	};
 
 	return (
-		<div className="Login panel">
+		<div className="Login">
 			<input
 				type="text"
 				name="username"
@@ -162,6 +158,7 @@ function Login(props) {
 			>
 				Login / Signup
 			</ButtonCta>
+			{console.log(typeof showIntermodal)}
 			<Intermodal
 				show={showIntermodal}
 				close={() => setShowIntermodal(false)}

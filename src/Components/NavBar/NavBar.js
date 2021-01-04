@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./NavBar.css";
+import "./NavBar.scss";
 import Search from "../Common/icons/SearchIcon/SearchIcon";
 import folder from "../../assets/folder.svg";
 import exit from "../../assets/exit.svg";

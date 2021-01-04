@@ -1,6 +1,5 @@
 import React from "react";
-import "./NotFoundPage.css";
-import PropTypes from "prop-types";
+import "./NotFoundPage.scss";
 
 /**
  * 404

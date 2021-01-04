@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PortfolioItem from "../PortfolioItem/PortfolioItem";
-import "./PortfolioList.css";
+import "./PortfolioList.scss";
 
 /**
  * List of securities with current quote

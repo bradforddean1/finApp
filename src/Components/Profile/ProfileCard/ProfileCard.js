@@ -1,5 +1,5 @@
 import React from "react";
-import "./ProfileCard.css";
+import "./ProfileCard.scss";
 import PropTypes from "prop-types";
 import Line from "../ProfileCardLine/ProfileCardLine";
 
@@ -11,7 +11,7 @@ function ProfileCard(props) {
 	const { title, metrics, values } = props;
 	return (
 		<div className="ProfileCard card bg-secondary">
-			<h3 className="card-line accent">{title}</h3>
+			<h3 className="card-line">{title}</h3>
 			<ul className="list">
 				{metrics.map((metric, i) => (
 					<Line key={i} name={metric} value={values[i]} />

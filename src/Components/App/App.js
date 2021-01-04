@@ -7,8 +7,8 @@ import SearchPage from "../Search/SearchPage/SearchPage";
 import PortfolioPage from "../Portfolio/PortfolioPage/PortfolioPage";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import NavBar from "../NavBar/NavBar";
-import { request } from "../../Utils/api/serverRequest";
-import "./App.css";
+import { logout } from "../../api/serverRequest";
+import "./App.scss";
 
 /**
  * Applicaton
@@ -35,14 +35,17 @@ function App(props) {
 								return getLoginComponent(props);
 							}}
 						/>
+						<Redirect
+							from="/Auth-error"
+							to={{
+								pathname: "/login",
+								state: { referrer: "servAuthError" },
+							}}
+						/>
 						<Route
 							path="/logout"
 							component={(props) => {
-								request("GET", "api/auth/logout").catch((error) => {
-									if (!error.type === "UNAUTHORIZED") {
-										throw error;
-									}
-								});
+								logout();
 								return (
 									<Redirect
 										to={{

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Login from "../Login/Login";
 import Intermodal from "../Common/Intermodal/Intermodal";
 import man from "../../assets/man1.svg";
-import "./LoginPage.css";
+import "./LoginPage.scss";
 import FullHeaderPage from "../FullHeaderPage/FullHeaderPage";
 
 /**

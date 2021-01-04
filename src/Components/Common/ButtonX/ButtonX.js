@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import x from "../../../assets/cross.svg";
-import "./ButtonX.css";
+import "./ButtonX.scss";
 
 /**
  * Circular X Button

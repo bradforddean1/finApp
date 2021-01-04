@@ -1,6 +1,15 @@
+@use "../../scss/variables" as v;
+
 .Login {
 	display: flex;
 	flex-direction: column;
+	margin-left: v.$gutter;
+	margin-right: v.$gutter;
+}
+
+.Login input,
+.Login button {
+	height: 50px;
 }
 
 .Login input {
@@ -19,7 +28,7 @@
 .Login h2 {
 	margin-bottom: 8px;
 
-	font-family: Futura;
+	font-family: "Hind", sans-serif;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 24px;

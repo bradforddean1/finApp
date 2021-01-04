@@ -1,5 +1,5 @@
 import React from "react";
-import "./Quote.css";
+import "./Quote.scss";
 import PropTypes from "prop-types";
 
 /**

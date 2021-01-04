@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./SecurityId.css";
+import "./SecurityId.scss";
 
 /**
  * Displays secuity identifying information, Logo, Name and Ticker Symbol

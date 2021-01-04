@@ -1,3 +1,5 @@
+@use "../../../scss/variables" as v;
+
 .Quote {
 	display: flex;
 	flex-direction: column;
@@ -9,4 +11,12 @@
 
 .Quote *:nth-last-child(0) {
 	margin-bottom: 0;
+}
+
+.Quote .de-emphasis {
+	color: v.$de-emphasis-color;
+}
+
+.Quote .emphasis {
+	font-weight: 700;
 }

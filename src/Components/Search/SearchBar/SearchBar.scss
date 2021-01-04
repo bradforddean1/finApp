@@ -1,3 +1,5 @@
+@use "../../../scss/variables" as v;
+
 .SearchBar {
 	display: flex;
 	flex-direction: column;
@@ -7,6 +9,7 @@
 	flex: 1;
 	display: flex;
 }
+
 .SearchBar input {
 	flex: 1;
 	padding-right: 50px;
@@ -15,7 +18,8 @@
 }
 
 .SearchBar button {
-	width: 50px;
+	width: v.$std-from-elem-height;
+	height: v.$std-from-elem-height;
 	margin-left: -54px;
 	margin-top: 3px;
 	padding: 0;

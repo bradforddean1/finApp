@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import SecurityId from "../../Common/SecurityId/SecurityId";
 import Quote from "../../Common/Quote/Quote";
-import "./ProfileHeader.css";
 import SecurityDetails from "../../Common/SecurityDetails/SecurityDetails";
 
 /**

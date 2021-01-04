@@ -1,7 +1,7 @@
 import React, { createElement } from "react";
 import PropTypes from "prop-types";
 import ButtonX from "../ButtonX/ButtonX";
-import "./Intermodal.css";
+import "./Intermodal.scss";
 
 /**
  * Intermodal overlay

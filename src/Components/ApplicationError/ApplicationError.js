@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./ApplicationError.css";
+import "./ApplicationError.scss";
 
 /**
  * Outer Error Boundary with handleing for auth erros and any other uncaught errors.

@@ -1,5 +1,5 @@
 import React from "react";
-import "./ButtonAdd.css";
+import "./ButtonAdd.scss";
 import PropTypes from "prop-types";
 
 /**

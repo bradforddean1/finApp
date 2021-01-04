@@ -1,19 +1,19 @@
-.LoginPage {
+.ZtockHeader {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: center;
 	background-repeat: no-repeat;
 	background-size: 100%;
 }
 
-.LoginPage h1 {
+.ZtockHeader h1 {
 	text-align: center;
 	margin-bottom: 20px;
 }
 
-.LoginPage p {
-	font-family: Futura;
+.ZtockHeader p {
+	font-family: "hind";
 	font-weight: 500;
 	font-size: 24px;
 	line-height: 32px;

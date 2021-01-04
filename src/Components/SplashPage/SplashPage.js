@@ -1,7 +1,7 @@
 import React from "react";
 import ButtonCta from "../Common/ButtonCta/ButtonCta";
 import FullHeaderPage from "../FullHeaderPage/FullHeaderPage";
-import "./SplashPage.css";
+import "./SplashPage.scss";
 
 /**
  * Splash Page Root

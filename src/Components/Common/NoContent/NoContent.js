@@ -1,5 +1,5 @@
 import React from "react";
-import "./NoContent.css";
+import "./NoContent.scss";
 import PropTypes from "prop-types";
 
 /**
