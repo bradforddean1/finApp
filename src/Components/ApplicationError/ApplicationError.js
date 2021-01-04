@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./ApplicationError.scss";
+import PageError from "../Common/PageError/PageError";
 
 /**
  * Outer Error Boundary with handleing for auth erros and any other uncaught errors.
@@ -20,7 +20,12 @@ class ApplicationError extends React.Component {
 
 	render() {
 		if (this.state.hasError) {
-			return <div className="ApplicationError">This is an error</div>;
+			return (
+				<PageError
+					title="Oh no!"
+					content="We are having an unexpected technical deififculties. Please try again later"
+				></PageError>
+			);
 		}
 		return this.props.children;
 	}

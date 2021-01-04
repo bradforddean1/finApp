@@ -1,5 +1,5 @@
 import React from "react";
-import "./NotFoundPage.scss";
+import PageError from "../Common/PageError/PageError";
 
 /**
  * 404
@@ -7,13 +7,12 @@ import "./NotFoundPage.scss";
  */
 function NotFoundPage(props) {
 	return (
-		<div className="NotFoundPage page">
-			<h1>404</h1>
-			<p>Content not found</p>
-		</div>
+		<PageError
+			// className="ApplicationError"
+			title="404"
+			content="Content not found."
+		></PageError>
 	);
 }
-
-NotFoundPage.propTypes = {};
 
 export default NotFoundPage;
