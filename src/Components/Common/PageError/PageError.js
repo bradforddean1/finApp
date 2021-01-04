@@ -22,12 +22,12 @@ function PageError(props) {
 }
 
 PageError.propTypes = {
-	/**
-	 * Example prop
-	 */
-	example: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	content: PropTypes.string,
 };
 
-PageError.defaultProps = {};
+PageError.defaultProps = {
+	content: null,
+};
 
 export default PageError;

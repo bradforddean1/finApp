@@ -1,5 +1,5 @@
 .FullHeaderPage {
-	height: 100%;
+	height: calc(100% - 48px);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

@@ -158,7 +158,6 @@ function Login(props) {
 			>
 				Login / Signup
 			</ButtonCta>
-			{console.log(typeof showIntermodal)}
 			<Intermodal
 				show={showIntermodal}
 				close={() => setShowIntermodal(false)}

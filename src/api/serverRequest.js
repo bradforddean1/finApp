@@ -28,7 +28,6 @@ const request = (method, endpoint, body) => {
 			return r
 				.json()
 				.then((data) => {
-					console.log({ status: r.status, body: data, ok: r.ok });
 					return { status: r.status, body: data, ok: r.ok };
 				})
 				.catch(() => {
@@ -91,7 +90,6 @@ const addToPortfolio = (ticker) => {
 };
 
 const login = (username, password) => {
-	console.log(username, password);
 	const body = { username: username, password: password };
 	return request("POST", "api/auth/login", body);
 };

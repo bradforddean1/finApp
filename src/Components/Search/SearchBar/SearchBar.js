@@ -27,6 +27,8 @@ function SearchBar(props) {
 				props.resultsCallback(data);
 			})
 			.catch((err) => {
+				setIsLoading(false);
+
 				if (err.type === "UNAUTHORIZED") {
 					history.push("/Auth-error");
 				} else if (err.type === "REQUESTERROR") {
@@ -34,7 +36,6 @@ function SearchBar(props) {
 				} else {
 					throw err;
 				}
-				setIsLoading(false);
 			});
 	};
 
@@ -65,7 +66,5 @@ SearchBar.propTypes = {
 	 */
 	resultsCallback: PropTypes.func.isRequired,
 };
-
-SearchBar.defaultProps = {};
 
 export default SearchBar;
