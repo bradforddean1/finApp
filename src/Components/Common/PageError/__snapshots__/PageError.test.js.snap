@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageError Component Renders given props 1`] = `
+<div
+  className="PageError"
+  style={
+    Object {
+      "backgroundImage": "url(elipse.svg)",
+    }
+  }
+>
+  <h1>
+    Test Title
+  </h1>
+  <p>
+    Test Content
+  </p>
+</div>
+`;
+
+exports[`PageError Component Renders the Default State 1`] = `
+<div
+  className="PageError"
+  style={
+    Object {
+      "backgroundImage": "url(elipse.svg)",
+    }
+  }
+>
+  <h1 />
+  <p />
+</div>
+`;

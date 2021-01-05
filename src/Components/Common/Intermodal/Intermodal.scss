@@ -1,3 +1,5 @@
+@use "../../../scss/variables" as v;
+
 .Intermodal {
 	position: fixed;
 	display: flex;
@@ -14,7 +16,7 @@
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	background: #e5e5e5;
+	background: v.$loading-bg-color;
 	opacity: 0.8;
 }
 

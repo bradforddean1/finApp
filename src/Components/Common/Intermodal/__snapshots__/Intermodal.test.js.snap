@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Intermodal Component Renders given props 1`] = `
+<Fragment>
+  <div
+    className="Intermodal"
+  >
+    <div
+      className="background"
+    />
+    <div
+      className="intermodal-box"
+    >
+      <ButtonX
+        handleClick={[Function]}
+      />
+      Test Content
+      <a
+        className="intermodal-button "
+        href="/"
+        key="0"
+      >
+        Test Button Content
+      </a>
+    </div>
+  </div>
+</Fragment>
+`;
+
+exports[`Intermodal Component Renders the Default State 1`] = `<Fragment />`;

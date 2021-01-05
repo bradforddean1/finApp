@@ -1,3 +1,10 @@
+@use "../../../scss/variables" as v;
+
+.SearchPage {
+	max-width: v.$panel-content-max-width;
+	margin: auto;
+}
+
 .SearchPage .default {
 	text-align: center;
 }
@@ -10,6 +17,7 @@
 .SearchPage .header {
 	padding: 0 16px 8px 16px;
 	display: flex;
+	max-width: v.$panel-content-max-width;
 }
 
 .SearchPage .header > * {

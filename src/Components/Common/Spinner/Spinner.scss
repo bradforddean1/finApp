@@ -1,0 +1,12 @@
+@use "../../../scss/variables" as v;
+
+.Spinner {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: v.$loading-bg-color;
+	opacity: 0.8;
+	z-index: 1000;
+}

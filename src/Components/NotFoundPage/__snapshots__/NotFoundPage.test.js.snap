@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFoundPage Component Renders the Default State 1`] = `
+<PageError
+  content="Content not found."
+  title="404"
+/>
+`;

@@ -23,7 +23,7 @@ function LoginPage(props) {
 				<img src={man} alt="man in chair looking for stocks" />
 				<Login reRoute={(path) => push(path)} />
 				<Intermodal
-					show={showReferrerInterstitial}
+					show={!!showReferrerInterstitial}
 					close={() => setShowReferrerInterstitial(false)}
 					buttons={[
 						{

@@ -59,10 +59,10 @@ function App(props) {
 						<Route component={NotFoundPage} />
 					</Switch>
 				</main>
-				<footer className="sticky-footer">
+				<nav className="responsive-nav">
 					<Route exact path="/portfolio" component={NavBar} />
 					<Route path="/search" component={NavBar} />
-				</footer>
+				</nav>
 			</ApplicationError>
 		</div>
 	);

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoContent Component Renders given props 1`] = `
+<div
+  className="NoContent"
+>
+  Test
+</div>
+`;
+
+exports[`NoContent Component Renders the Default State 1`] = `
+<div
+  className="NoContent"
+/>
+`;

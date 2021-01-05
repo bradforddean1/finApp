@@ -34,7 +34,7 @@ function PortfolioList(props) {
 
 PortfolioList.propTypes = {
 	deletePortfolioItem: PropTypes.func.isRequired,
-	portfolioItems: PropTypes.arrayOf(
+	items: PropTypes.arrayOf(
 		PropTypes.shape({
 			name: PropTypes.string.isRequired,
 			ticker: PropTypes.string.isRequired,
@@ -49,7 +49,7 @@ PortfolioList.propTypes = {
 };
 
 PortfolioList.defaultProps = {
-	portfolioItems: [],
+	items: [],
 };
 
 export default PortfolioList;

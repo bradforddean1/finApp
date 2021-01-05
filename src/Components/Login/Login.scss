@@ -3,8 +3,15 @@
 .Login {
 	display: flex;
 	flex-direction: column;
-	margin-left: v.$gutter;
-	margin-right: v.$gutter;
+	padding-left: v.$gutter;
+	padding-right: v.$gutter;
+}
+
+@media screen and (min-width: v.$first-break-point) {
+	.Login {
+		width: v.$panel-content-max-width;
+		margin: auto;
+	}
 }
 
 .Login input,

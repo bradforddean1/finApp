@@ -1,6 +1,17 @@
+@use "../../../scss/variables"as v;
+
 .PortfolioList {
 	display: flex;
 	flex-direction: column;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: v.$gutter;
+	padding-right: v.$gutter;
+	margin: auto;
 }
+
+@media screen and (min-width: v.$first-break-point) {
+	.PortfolioList {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+} ;

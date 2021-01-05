@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SecurityDetails Component Renders given props 1`] = `
+<div
+  className="SecurityDetails card-line"
+>
+  <div
+    className="web"
+  >
+    <WorldIcon />
+    <a
+      className="small-script"
+      href="www.xyz.com"
+    >
+      www.xyz.com
+    </a>
+  </div>
+  <span
+    className="small-script"
+  >
+    -
+  </span>
+  <span
+    className="small-script"
+  >
+    IPO: 
+    2000-01-10
+  </span>
+</div>
+`;
+
+exports[`SecurityDetails Component Renders the Default State 1`] = `
+<div
+  className="SecurityDetails card-line"
+>
+  <div
+    className="web"
+  />
+  <span
+    className="small-script"
+  >
+    -
+  </span>
+  <span
+    className="small-script"
+  >
+    IPO: 
+    -
+  </span>
+</div>
+`;

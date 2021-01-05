@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav Component Renders the Default State 1`] = `
+<div
+  className="NavBar bg-primary"
+>
+  <Link
+    to="/search"
+  >
+    <figure>
+      <SearchIcon
+        color="#fff"
+      />
+      <figcaption>
+        Search
+      </figcaption>
+    </figure>
+  </Link>
+  <Link
+    to="/portfolio"
+  >
+    <figure>
+      <img
+        alt="folder"
+        src="folder.svg"
+      />
+      <figcaption>
+        Portfolio
+      </figcaption>
+    </figure>
+  </Link>
+  <Link
+    to="/logout"
+  >
+    <figure>
+      <img
+        alt="exit"
+        src="exit.svg"
+      />
+      <figcaption>
+        Logout
+      </figcaption>
+    </figure>
+  </Link>
+</div>
+`;

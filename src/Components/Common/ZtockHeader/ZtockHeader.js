@@ -1,5 +1,5 @@
 import React from "react";
-import "./ZtockHeader.css";
+import "./ZtockHeader.scss";
 import PropTypes from "prop-types";
 
 /**

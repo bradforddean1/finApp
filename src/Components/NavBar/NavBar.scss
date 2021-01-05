@@ -1,3 +1,5 @@
+@use "../../scss/variables" as v;
+
 .NavBar {
 	display: flex;
 }
@@ -6,6 +8,18 @@
 	flex: 1;
 	text-align: center;
 	padding: 12.5px;
+}
+
+@media screen and (min-width: v.$first-break-point) {
+	.NavBar {
+		height: 100%;
+		flex-direction: column;
+		align-items: start;
+	}
+
+	.NavBar a {
+		flex-grow: 0;
+	}
 }
 
 .NavBar figcaption {

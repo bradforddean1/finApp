@@ -1,3 +1,5 @@
+@use "../../scss/variables" as v;
+
 .SplashPage {
 	display: flex;
 	flex-direction: column;
@@ -5,6 +7,13 @@
 	height: 100%;
 	padding-left: 20px;
 	padding-right: 20px;
+}
+
+@media screen and (min-width: v.$first-break-point) {
+	.SplashPage {
+		max-width: v.$panel-content-max-width;
+		margin: auto;
+	}
 }
 
 .SplashPage .cta,

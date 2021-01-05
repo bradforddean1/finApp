@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SecurityId Component Renders given props 1`] = `
+<div
+  className="SecurityId card-line"
+>
+  <img
+    alt="logo"
+    src="https://test.logo.com"
+  />
+  <h2>
+    XYZ, corp
+     
+    <span>
+      (
+      ZYZ
+      )
+    </span>
+  </h2>
+</div>
+`;
+
+exports[`SecurityId Component Renders the Default State 1`] = `
+<div
+  className="SecurityId card-line"
+>
+  <h2>
+     
+    <span>
+      (
+      )
+    </span>
+  </h2>
+</div>
+`;

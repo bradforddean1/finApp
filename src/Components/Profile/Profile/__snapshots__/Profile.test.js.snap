@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Quote Component Renders the Default State 1`] = `
+<div
+  className="Profile"
+>
+  <ProfileHeader
+    change="n/a"
+    changePct="n/a"
+    country="n/a"
+    currency="n/a"
+    current="n/a"
+    exchange="n/a"
+    ipo="n/a"
+    logo="n/a"
+    name="n/a"
+    ticker="n/a"
+    website="n/a"
+  />
+  <ProfileCard
+    metrics={
+      Array [
+        "Industry",
+        "Market Capitalization",
+        "Shares Outstanding",
+      ]
+    }
+    title="Segment"
+    values={
+      Array [
+        "n/a",
+        "n/a",
+        "n/a",
+      ]
+    }
+  />
+  <ProfileCard
+    metrics={
+      Array [
+        "Current Ratio Annual",
+        "Current Ratio Quarterly",
+      ]
+    }
+    title="Stablity"
+    values={
+      Array [
+        "n/a",
+        "n/a",
+      ]
+    }
+  />
+  <ProfileCard
+    metrics={
+      Array [
+        "PE Ratio",
+        "Price to Book Ratio",
+      ]
+    }
+    title="Value"
+    values={
+      Array [
+        "n/a",
+        "n/a",
+      ]
+    }
+  />
+  <ProfileCard
+    metrics={
+      Array [
+        "Earnigns Per Share",
+        "EPS Growth 3Y",
+        "EPS Growth 5Y",
+        "EPS Growth TTM YOY",
+      ]
+    }
+    title="Profitability"
+    values={
+      Array [
+        "n/a",
+        "n/a",
+        "n/a",
+        "n/a",
+      ]
+    }
+  />
+  <ProfileCard
+    metrics={
+      Array [
+        "Dividends Per Share Annual",
+        "Dividend Yield Indicated Annual",
+        "Dividend Per Share 5Y",
+        "Dividend Yield 5Y",
+        "Dividend Growth Rate 5Y",
+      ]
+    }
+    title="Dividends"
+    values={
+      Array [
+        "n/a",
+        "n/a",
+        "n/a",
+        "n/a",
+        "n/a",
+      ]
+    }
+  />
+  <ButtonAdd
+    className="add"
+    handleClick={[Function]}
+    tag="button"
+  />
+  <Intermodal
+    buttons={Array []}
+    close={[Function]}
+    show={false}
+  />
+</div>
+`;

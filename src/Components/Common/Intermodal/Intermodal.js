@@ -53,7 +53,6 @@ Intermodal.propTypes = {
 	 */
 	show: PropTypes.oneOfType([
 		PropTypes.bool,
-		PropTypes.string,
 	]) /** TODO: Passed in prop should be bool only */,
 	/**
 	 * List of action Buttons to be implemented

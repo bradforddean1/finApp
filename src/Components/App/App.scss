@@ -1,19 +1,40 @@
+@use "../../scss//variables" as v;
+
 html,
 body,
 #root {
-	height: 100%;
+	min-height: 100%;
 }
 
 .App {
 	height: 100%;
+	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 }
 
 .main-content {
-	flex: 1 0 auto;
+	flex: 1 1 auto;
 }
 
-.sticky-footer {
+.responsive-nav {
 	flex-shrink: 0;
+}
+
+@media screen and (min-width: v.$first-break-point) {
+	.App {
+		flex-direction: row-reverse;
+	}
+
+	.responsive-nav {
+		min-height: 100%;
+	}
+}
+
+@media screen and (max-width: v.$blw-first-break-point) {
+	.responsive-nav {
+		position: fixed;
+		width: 100%;
+		bottom: 0;
+	}
 }

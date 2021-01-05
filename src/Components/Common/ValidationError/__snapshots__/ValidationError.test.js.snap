@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidationError Component Renders given props 1`] = `
+<div
+  className="ValidationError"
+>
+  Error
+</div>
+`;
+
+exports[`ValidationError Component Renders the Default State 1`] = `
+<div
+  className="ValidationError"
+/>
+`;

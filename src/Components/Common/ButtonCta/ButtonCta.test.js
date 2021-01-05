@@ -11,12 +11,14 @@ describe("ButtonCta Component", () => {
 		ReactDOM.unmountComponentAtNode(div);
 	});
 
-	it.skip("Renders the Default State", () => {
+	it("Renders the Default State", () => {
 		const wrapper = shallow(<ButtonCta />);
 		expect(toJson(wrapper)).toMatchSnapshot();
 	});
 
-	it.skip("Renders given props", () => {
+	const props = { tag: "a", children: "Test", className: "test" };
+
+	it("Renders given props", () => {
 		const wrapper = shallow(<ButtonCta {...props} />);
 		expect(toJson(wrapper)).toMatchSnapshot();
 	});

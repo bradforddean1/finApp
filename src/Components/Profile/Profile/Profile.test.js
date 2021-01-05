@@ -11,13 +11,8 @@ describe("Quote Component", () => {
 		ReactDOM.unmountComponentAtNode(div);
 	});
 
-	it.skip("Renders the Default State", () => {
+	it("Renders the Default State", () => {
 		const wrapper = shallow(<Profile />);
-		expect(toJson(wrapper)).toMatchSnapshot();
-	});
-
-	it.skip("Renders given props", () => {
-		const wrapper = shallow(<Profile {...props} />);
 		expect(toJson(wrapper)).toMatchSnapshot();
 	});
 });

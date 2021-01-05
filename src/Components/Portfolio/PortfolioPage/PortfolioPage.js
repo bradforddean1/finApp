@@ -2,6 +2,7 @@ import React from "react";
 import { useApi } from "../../../hooks/useApi";
 import PropTypes from "prop-types";
 import PortfolioList from "../PortfolioList/PortfolioList";
+import Spinner from "../../Common/Spinner/Spinner";
 import man from "../../../assets/man2.svg";
 import background from "../../../assets/elipse.svg";
 import "./PortfolioPage.scss";
@@ -19,15 +20,13 @@ function PortfolioPage(props) {
 
 	const [isLoading, data, error] = portfolioItems.initial();
 
-	// const history = useHistory();
-
 	const handleDeletedItem = (ticker) => {
 		portfolioItems.update(data.filter((item) => item.ticker !== ticker));
 	};
 
 	return (
 		<div className="PortfolioPage page">
-			{!!isLoading && <div>Loading</div>}
+			<Spinner show={isLoading} />
 			{data.length < 1 ? (
 				<div
 					className="empty-portfolio"

@@ -1,6 +1,7 @@
 @use "../../../scss/variables" as v;
 
 .Profile {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	padding-top: 4px;

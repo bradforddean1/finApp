@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonCta Component Renders given props 1`] = `
+<a
+  className="ButtonCta test"
+>
+  Test
+</a>
+`;
+
+exports[`ButtonCta Component Renders the Default State 1`] = `
+<a
+  className="ButtonCta "
+/>
+`;

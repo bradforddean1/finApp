@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileCard Component Renders the Default State 1`] = `
+<div
+  className="ProfileCard card bg-secondary"
+>
+  <h3
+    className="card-line"
+  />
+  <ul
+    className="list"
+  />
+</div>
+`;

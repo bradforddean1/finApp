@@ -41,4 +41,8 @@ ApplicationError.propTypes = {
 	]),
 };
 
+ApplicationError.defaultProps = {
+	children: null,
+};
+
 export default ApplicationError;

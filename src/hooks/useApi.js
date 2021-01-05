@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const useApi = (apiFunction, params, callback) => {
 	const [data, setData] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
-	// const history = useHistory();
+	const history = useHistory();
 
 	useEffect(() => {
 		apiFunction(params)
@@ -18,7 +18,7 @@ const useApi = (apiFunction, params, callback) => {
 			})
 			.catch((err) => {
 				if (err.type === "UNAUTHORIZED") {
-					// history.push("/Auth-error");
+					history.push("/Auth-error");
 				} else if (err.type === "REQUESTERROR") {
 					setError(err.message);
 				} else {
@@ -26,7 +26,7 @@ const useApi = (apiFunction, params, callback) => {
 				}
 				setIsLoading(false);
 			});
-	}, [apiFunction, params, callback]);
+	}, [apiFunction, params, callback, history]);
 
 	const res = {};
 

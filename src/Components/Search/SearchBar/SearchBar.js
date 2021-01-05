@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { getTickerProfile } from "../../../api/serverRequest";
 import Search from "../../Common/icons/SearchIcon/SearchIcon";
 import ValidationError from "../../Common/ValidationError/ValidationError";
+import Spinner from "../../Common/Spinner/Spinner";
 import "./SearchBar.scss";
 
 /**
@@ -28,7 +29,6 @@ function SearchBar(props) {
 			})
 			.catch((err) => {
 				setIsLoading(false);
-
 				if (err.type === "UNAUTHORIZED") {
 					history.push("/Auth-error");
 				} else if (err.type === "REQUESTERROR") {
@@ -41,7 +41,7 @@ function SearchBar(props) {
 
 	return (
 		<div className="SearchBar">
-			{isLoading ? <div>Loading</div> : null}
+			<Spinner show={isLoading} />
 			<div className="bar">
 				<input
 					type="text"

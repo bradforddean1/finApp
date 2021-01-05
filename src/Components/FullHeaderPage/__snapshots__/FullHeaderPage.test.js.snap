@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FullHeaderPage Component Renders given props 1`] = `
+<div
+  className="FullHeaderPage page"
+  style={
+    Object {
+      "backgroundImage": "url(header.svg)",
+    }
+  }
+>
+  <div>
+    <h1>
+      <img
+        alt="ztok"
+        src="ztok.svg"
+      />
+    </h1>
+    <span
+      className="slogan"
+    >
+      Stocks Under Control!
+    </span>
+  </div>
+  <div>
+    Test Page
+  </div>
+</div>
+`;
+
+exports[`FullHeaderPage Component Renders the Default State 1`] = `
+<div
+  className="FullHeaderPage page"
+  style={
+    Object {
+      "backgroundImage": "url(header.svg)",
+    }
+  }
+>
+  <div>
+    <h1>
+      <img
+        alt="ztok"
+        src="ztok.svg"
+      />
+    </h1>
+    <span
+      className="slogan"
+    >
+      Stocks Under Control!
+    </span>
+  </div>
+</div>
+`;

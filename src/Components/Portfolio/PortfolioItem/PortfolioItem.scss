@@ -1,3 +1,22 @@
+@use "../../../scss/variables" as v;
+
 .PortfolioItem {
 	position: relative;
+	max-width: 400px;
 }
+
+@media screen and (min-width: v.$first-break-point) {
+	.PortfolioItem {
+		min-width: 400px;
+		margin-left: 10px;
+		margin-right: 10px;
+
+		&:nth-child(0) {
+			margin-left: 0;
+		}
+
+		&:nth-last-child(0) {
+			margin-right: 0;
+		}
+	}
+} ;

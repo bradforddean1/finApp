@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Quote Component Renders given props 1`] = `
+<div
+  className="Quote card-line"
+>
+  <span
+    className="emphasis"
+  >
+    $3.22
+     
+    USD
+  </span>
+  <span
+    className="emphasis"
+  >
+    -1.2
+     (
+    -.02%
+    )
+  </span>
+  <p
+    className="de-emphasis"
+  >
+    Data from 
+    NYSE
+  </p>
+</div>
+`;
+
+exports[`Quote Component Renders the Default State 1`] = `
+<div
+  className="Quote card-line"
+>
+  <span
+    className="emphasis"
+  >
+    N/A
+     
+  </span>
+  <span
+    className="emphasis"
+  >
+    N/A
+     (
+    N/A
+    )
+  </span>
+</div>
+`;
