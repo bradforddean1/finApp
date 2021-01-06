@@ -1,5 +1,5 @@
 import axios from "axios";
-import session from "../utils/session";
+// import session from "../utils/session";
 import { SERVER_ROOT } from "../config";
 
 const api = axios.create({
@@ -9,6 +9,7 @@ const api = axios.create({
 	// headers: { "X-Custom-Header": "foobar" },
 });
 
+// REQUEST USING AXIOS USE THIS
 const handleApiResponse = (response) => {
 	if (response.status === 401) {
 		const err = new Error(
@@ -32,6 +33,7 @@ const handleApiResponse = (response) => {
 	return response;
 };
 
+// REQUESTS USING FETCH USE THIS
 const request = (method, endpoint, body) => {
 	const headers = new Headers();
 	headers.append("Content-Type", "application/json");
@@ -89,6 +91,7 @@ const request = (method, endpoint, body) => {
 };
 
 const getTickerProfile = (ticker) => {
+	// USING AXIOS //
 	const query = api
 		.get(`api/quote/${ticker}/profile`, { withCredentials: true })
 		.then((result) => {
@@ -103,6 +106,8 @@ const getTickerProfile = (ticker) => {
 			return handleApiResponse(res).data.profile;
 		});
 	return query;
+
+	// USING FETCH //
 	// return handleApiResponse(query); //.then((data) => data.profile);
 
 	// return handleApiResponse(query);
@@ -138,11 +143,10 @@ const addToPortfolio = (ticker) => {
 
 const login = (username, password) => {
 	const body = { username: username, password: password };
-	return api
-		.post("api/auth/login", body, { withCredentials: true })
-		.then((response) => {
-			session.setSession(response.headers["Set-Cookie"]);
-		});
+	return api.post("api/auth/login", body, { withCredentials: true });
+	// .then((response) => {
+	// 	session.setSession(response.headers["Set-Cookie"]);
+	// });
 	// return request("POST", "api/auth/login", body).then(()=>{});
 };
 
@@ -153,9 +157,9 @@ const register = (username, password) => {
 
 const logout = () => {
 	request("GET", "api/auth/logout")
-		.then(() => {
-			session.removeSession();
-		})
+		// .then(() => {
+		// 	session.removeSession();
+		// })
 		.catch((error) => {
 			if (!error.type === "UNAUTHORIZED") {
 				throw error;
