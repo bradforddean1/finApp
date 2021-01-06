@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/finApp/static/css/main.dbcd73aa.chunk.css",
+    "main.js": "/finApp/static/js/main.18272b0f.chunk.js",
+    "main.js.map": "/finApp/static/js/main.18272b0f.chunk.js.map",
+    "runtime-main.js": "/finApp/static/js/runtime-main.f4d75c55.js",
+    "runtime-main.js.map": "/finApp/static/js/runtime-main.f4d75c55.js.map",
+    "static/js/2.89be41f1.chunk.js": "/finApp/static/js/2.89be41f1.chunk.js",
+    "static/js/2.89be41f1.chunk.js.map": "/finApp/static/js/2.89be41f1.chunk.js.map",
+    "index.html": "/finApp/index.html",
+    "static/css/main.dbcd73aa.chunk.css.map": "/finApp/static/css/main.dbcd73aa.chunk.css.map",
+    "static/js/2.89be41f1.chunk.js.LICENSE.txt": "/finApp/static/js/2.89be41f1.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/finApp/static/media/Poppins-Regular.8081832f.ttf",
+    "static/media/cross.d9b67611.svg": "/finApp/static/media/cross.d9b67611.svg",
+    "static/media/elipse.2700f72c.svg": "/finApp/static/media/elipse.2700f72c.svg",
+    "static/media/exit.91104106.svg": "/finApp/static/media/exit.91104106.svg",
+    "static/media/folder.b3ba4b4f.svg": "/finApp/static/media/folder.b3ba4b4f.svg",
+    "static/media/header.81c537ba.svg": "/finApp/static/media/header.81c537ba.svg",
+    "static/media/man1.f98c9ce0.svg": "/finApp/static/media/man1.f98c9ce0.svg",
+    "static/media/man2.862d71f2.svg": "/finApp/static/media/man2.862d71f2.svg",
+    "static/media/man3.01c4523c.svg": "/finApp/static/media/man3.01c4523c.svg",
+    "static/media/ztok.66161f31.svg": "/finApp/static/media/ztok.66161f31.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f4d75c55.js",
+    "static/js/2.89be41f1.chunk.js",
+    "static/css/main.dbcd73aa.chunk.css",
+    "static/js/main.18272b0f.chunk.js"
+  ]
+}
