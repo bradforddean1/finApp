@@ -1,4 +1,37 @@
+import { queryByRole } from "@testing-library/react";
+import axios from "axios";
+
 import { SERVER_ROOT } from "../config";
+
+const api = axios.create({
+	baseURL: SERVER_ROOT.concat("/"),
+	timeout: 10000,
+	withCredentials: true,
+	// headers: { "X-Custom-Header": "foobar" },
+});
+
+const handleApiResponse = (response) => {
+	if (response.status === 401) {
+		const err = new Error(
+			response.data && response.data.status
+				? response.data.status
+				: "unauthorized"
+		);
+		err.type = "UNAUTHORIZED";
+
+		err.passValErrors =
+			response.data && response.data.valErrors
+				? response.data.valErrors
+				: false;
+
+		throw err;
+	} else if (!response.status.toString().charAt(0) === "2") {
+		const err = new Error(response.data.status);
+		err.type = "REQUESTERROR";
+		throw err;
+	}
+	return response;
+};
 
 const request = (method, endpoint, body) => {
 	const headers = new Headers();
@@ -34,7 +67,6 @@ const request = (method, endpoint, body) => {
 					return { status: r.status, body: null, ok: r.ok };
 				});
 		})
-
 		.then((response) => {
 			if (response.status === 401) {
 				const err = new Error(
@@ -43,32 +75,48 @@ const request = (method, endpoint, body) => {
 						: "unauthorized"
 				);
 				err.type = "UNAUTHORIZED";
-
 				err.passValErrors =
 					response.body && response.body.valErrors
 						? response.body.valErrors
 						: false;
-
 				throw err;
 			} else if (!response.ok) {
 				const err = new Error(response.body.status);
 				err.type = "REQUESTERROR";
 				throw err;
 			}
-
 			return response.body;
 		});
 };
 
-const getTickerProfile = (ticker) =>
-	request("GET", `api/quote/${ticker}/profile`).then((result) => {
-		if (result.status === "no match") {
-			const err = new Error(`No match found for ${ticker}.`);
-			err.type = "REQUESTERROR";
-			throw err;
-		}
-		return result.profile;
-	});
+const getTickerProfile = (ticker) => {
+	const query = api
+		.get(`api/quote/${ticker}/profile`, { withCredentials: true })
+		.then((result) => {
+			if (result.status === "no match") {
+				const err = new Error(`No match found for ${ticker}.`);
+				err.type = "REQUESTERROR";
+				throw err;
+			}
+			return result;
+		})
+		.then((res) => {
+			return handleApiResponse(res).data.profile;
+		});
+	return query;
+	// return handleApiResponse(query); //.then((data) => data.profile);
+
+	// return handleApiResponse(query);
+
+	// return request("GET", `api/quote/${ticker}/profile`).then((result) => {
+	// 	if (result.status === "no match") {
+	// 		const err = new Error(`No match found for ${ticker}.`);
+	// 		err.type = "REQUESTERROR";
+	// 		throw err;
+	// 	}
+	// 	return result.profile;
+	// });
+};
 
 const getPortfolioItems = () => {
 	return request("GET", "api/portfolio");
@@ -91,7 +139,8 @@ const addToPortfolio = (ticker) => {
 
 const login = (username, password) => {
 	const body = { username: username, password: password };
-	return request("POST", "api/auth/login", body);
+	return api.post("api/auth/login", body, { withCredentials: true });
+	// return request("POST", "api/auth/login", body);
 };
 
 const register = (username, password) => {
