@@ -1,6 +1,5 @@
-import { queryByRole } from "@testing-library/react";
 import axios from "axios";
-
+import session from "../utils/session";
 import { SERVER_ROOT } from "../config";
 
 const api = axios.create({
@@ -139,8 +138,12 @@ const addToPortfolio = (ticker) => {
 
 const login = (username, password) => {
 	const body = { username: username, password: password };
-	return api.post("api/auth/login", body, { withCredentials: true });
-	// return request("POST", "api/auth/login", body);
+	return api
+		.post("api/auth/login", body, { withCredentials: true })
+		.then((response) => {
+			session.setSession(response.headers["Set-Cookie"]);
+		});
+	// return request("POST", "api/auth/login", body).then(()=>{});
 };
 
 const register = (username, password) => {
@@ -149,11 +152,15 @@ const register = (username, password) => {
 };
 
 const logout = () => {
-	request("GET", "api/auth/logout").catch((error) => {
-		if (!error.type === "UNAUTHORIZED") {
-			throw error;
-		}
-	});
+	request("GET", "api/auth/logout")
+		.then(() => {
+			session.removeSession();
+		})
+		.catch((error) => {
+			if (!error.type === "UNAUTHORIZED") {
+				throw error;
+			}
+		});
 };
 
 export {
