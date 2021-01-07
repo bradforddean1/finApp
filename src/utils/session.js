@@ -17,7 +17,10 @@ const session = {
 	},
 
 	removeSession: () => {
-		Cookies.remove("connect.sid");
+		Cookies.remove("connect.sid", {
+			path: "/",
+			domain: "https://fin-app.bradforddean1.vercel.app/",
+		});
 	},
 };
 
