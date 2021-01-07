@@ -143,10 +143,11 @@ const addToPortfolio = (ticker) => {
 
 const login = (username, password) => {
 	const body = { username: username, password: password };
-	return api.post("api/auth/login", body, { withCredentials: true });
-	.then((response) => {
-		session.setSession(response.headers["Set-Cookie"]);
-	});
+	return api
+		.post("api/auth/login", body, { withCredentials: true })
+		.then((response) => {
+			session.setSession(response.headers["Set-Cookie"]);
+		});
 	// return request("POST", "api/auth/login", body).then(()=>{});
 };
 

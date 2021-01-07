@@ -5,6 +5,7 @@ const session = {
 	setSession: (session) => {
 		Cookies.remove("connect.sid");
 		Cookies.set("connect.sid", session, { domain: SERVER_ROOT });
+		console.log(session);
 	},
 
 	getSession: () => {
