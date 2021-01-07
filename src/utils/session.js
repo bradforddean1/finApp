@@ -4,7 +4,6 @@ import SERVER_ROOT from "../../src/config";
 const session = {
 	setSession: (session) => {
 		Cookies.remove("connect.sid");
-		console.log(session);
 		Cookies.set("connect.sid", session, { domain: SERVER_ROOT });
 	},
 

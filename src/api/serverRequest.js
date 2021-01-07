@@ -6,7 +6,7 @@ const api = axios.create({
 	baseURL: SERVER_ROOT.concat("/"),
 	timeout: 10000,
 	withCredentials: true,
-	// headers: { "X-Custom-Header": "foobar" },
+	// headers: { "X-Custom-Hheeader": "foobar" },
 });
 
 // REQUEST USING AXIOS USE THIS
