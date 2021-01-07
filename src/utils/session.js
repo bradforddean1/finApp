@@ -1,9 +1,10 @@
 import * as Cookies from "js-cookie";
+import SERVER_ROOT from "../../src/config";
 
 const session = {
 	setSession: (session) => {
 		Cookies.remove("connect.sid");
-		Cookies.set("connect.sid", session, { expires: 14 });
+		Cookies.set("connect.sid", session, { domain: SERVER_ROOT });
 	},
 
 	getSession: () => {
@@ -19,7 +20,7 @@ const session = {
 	removeSession: () => {
 		Cookies.remove("connect.sid", {
 			path: "/",
-			domain: "https://fin-app.bradforddean1.vercel.app/",
+			domain: SERVER_ROOT,
 		});
 	},
 };
