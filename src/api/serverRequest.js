@@ -1,11 +1,12 @@
 import axios from "axios";
-import session from "../utils/session";
+// import session from "../utils/session";
 import { SERVER_ROOT } from "../config";
+
+axios.defaults.withCredentials = true
 
 const api = axios.create({
 	baseURL: SERVER_ROOT.concat("/"),
-	timeout: 10000,
-	withCredentials: true,
+	timeout: 10000
 	// headers: { "X-Custom-Hheeader": "foobar" },
 });
 
@@ -34,61 +35,61 @@ const handleApiResponse = (response) => {
 };
 
 // REQUESTS USING FETCH USE THIS
-const request = (method, endpoint, body) => {
-	const headers = new Headers();
-	headers.append("Content-Type", "application/json");
+// const request = (method, endpoint, body) => {
+// 	const headers = new Headers();
+// 	headers.append("Content-Type", "application/json");
 
-	const requestOptions = {
-		method: method,
-		credentials: "include",
-		headers: headers,
-		redirect: "follow",
-	};
+// 	const requestOptions = {
+// 		method: method,
+// 		credentials: "include",
+// 		headers: headers,
+// 		redirect: "follow",
+// 	};
 
-	body = JSON.stringify(body);
+// 	body = JSON.stringify(body);
 
-	if (body) {
-		// Object.assign(requestOptions, { body });
-		requestOptions.body = body;
-	}
+// 	if (body) {
+// 		// Object.assign(requestOptions, { body });
+// 		requestOptions.body = body;
+// 	}
 
-	const url = SERVER_ROOT.concat("/", endpoint);
+// 	const url = SERVER_ROOT.concat("/", endpoint);
 
-	return fetch(url, requestOptions)
-		.then((r) => {
-			if (r.status === 204) {
-				return { status: r.status, body: null, ok: r.ok };
-			}
-			return r
-				.json()
-				.then((data) => {
-					return { status: r.status, body: data, ok: r.ok };
-				})
-				.catch(() => {
-					return { status: r.status, body: null, ok: r.ok };
-				});
-		})
-		.then((response) => {
-			if (response.status === 401) {
-				const err = new Error(
-					response.body && response.body.status
-						? response.body.status
-						: "unauthorized"
-				);
-				err.type = "UNAUTHORIZED";
-				err.passValErrors =
-					response.body && response.body.valErrors
-						? response.body.valErrors
-						: false;
-				throw err;
-			} else if (!response.ok) {
-				const err = new Error(response.body.status);
-				err.type = "REQUESTERROR";
-				throw err;
-			}
-			return response.body;
-		});
-};
+// 	return fetch(url, requestOptions)
+// 		.then((r) => {
+// 			if (r.status === 204) {
+// 				return { status: r.status, body: null, ok: r.ok };
+// 			}
+// 			return r
+// 				.json()
+// 				.then((data) => {
+// 					return { status: r.status, body: data, ok: r.ok };
+// 				})
+// 				.catch(() => {
+// 					return { status: r.status, body: null, ok: r.ok };
+// 				});
+// 		})
+// 		.then((response) => {
+// 			if (response.status === 401) {
+// 				const err = new Error(
+// 					response.body && response.body.status
+// 						? response.body.status
+// 						: "unauthorized"
+// 				);
+// 				err.type = "UNAUTHORIZED";
+// 				err.passValErrors =
+// 					response.body && response.body.valErrors
+// 						? response.body.valErrors
+// 						: false;
+// 				throw err;
+// 			} else if (!response.ok) {
+// 				const err = new Error(response.body.status);
+// 				err.type = "REQUESTERROR";
+// 				throw err;
+// 			}
+// 			return response.body;
+// 		});
+// };
 
 const getTickerProfile = (ticker) => {
 	// USING AXIOS //
@@ -123,55 +124,56 @@ const getTickerProfile = (ticker) => {
 };
 
 const getPortfolioItems = () => {
-	return request("GET", "api/portfolio");
+	// return request("GET", "api/portfolio");
 };
 
 const deletePortfolioItem = (ticker, callback) => {
 	const endpoint = `api/portfolio/${ticker}`;
-	return request("DELETE", endpoint).then(() => {
-		if (callback) {
-			callback(ticker);
-		}
-	});
+	// return request("DELETE", endpoint).then(() => {
+	// 	if (callback) {
+	// 		callback(ticker);
+	// 	}
+	// });
 };
 
 const addToPortfolio = (ticker) => {
 	const endpoint = "api/portfolio";
 	const body = { ticker: ticker };
-	return request("POST", endpoint, body);
+	// return request("POST", endpoint, body);
 };
 
-const login = (username, password) => {
+const login = async (username, password) => {
 	const body = { username: username, password: password };
-	return api
-		.post("api/auth/login", body, { withCredentials: true })
+	const data = await axios
+		.post("https://polar-fjord-49637.herokuapp.com/api/auth/login", body, {withCredentials: true})
 		.then((response) => {
 			console.log("here");
 			console.log(response);
-			session.setSession(response.headers["Set-Cookie"]);
-		});
+			// session.setSession(response.headers["Set-Cookie"]);
+    });
+    return data;
 	// return request("POST", "api/auth/login", body).then(()=>{});
 };
 
 const register = (username, password) => {
 	const body = { username: username, password: password };
-	return request("POST", "api/auth/register", body);
+	// return request("POST", "api/auth/register", body);
 };
 
 const logout = () => {
-	request("GET", "api/auth/logout")
-		// .then(() => {
-		// 	session.removeSession();
-		// })
-		.catch((error) => {
-			if (!error.type === "UNAUTHORIZED") {
-				throw error;
-			}
-		});
+	// request("GET", "api/auth/logout")
+	// 	// .then(() => {
+	// 	// 	session.removeSession();
+	// 	// })
+	// 	.catch((error) => {
+	// 		if (!error.type === "UNAUTHORIZED") {
+	// 			throw error;
+	// 		}
+	// 	});
 };
 
 export {
-	request,
+	// request,
 	getTickerProfile,
 	getPortfolioItems,
 	deletePortfolioItem,
