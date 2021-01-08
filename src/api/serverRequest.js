@@ -146,6 +146,8 @@ const login = (username, password) => {
 	return api
 		.post("api/auth/login", body, { withCredentials: true })
 		.then((response) => {
+			console.log("here");
+			console.log(response);
 			session.setSession(response.headers["Set-Cookie"]);
 		});
 	// return request("POST", "api/auth/login", body).then(()=>{});

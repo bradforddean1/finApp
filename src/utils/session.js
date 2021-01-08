@@ -1,5 +1,5 @@
 import * as Cookies from "js-cookie";
-import SERVER_ROOT from "../../src/config";
+import { SERVER_ROOT } from "../../src/config";
 
 const session = {
 	setSession: (session) => {
