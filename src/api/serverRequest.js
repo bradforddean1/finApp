@@ -150,7 +150,8 @@ const login = (username, password) => {
 	return api
 		.post("api/auth/login", body, { withCredentials: true })
 		.then((response) => {
-			TokenService.saveAuthToken(response.AuthToken);
+			console.log(response.data);
+			TokenService.saveAuthToken(response.data.token);
 		});
 	// return request("POST", "api/auth/login", body).then(()=>{});
 };
