@@ -7,7 +7,7 @@ import SearchPage from "../Search/SearchPage/SearchPage";
 import PortfolioPage from "../Portfolio/PortfolioPage/PortfolioPage";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import NavBar from "../NavBar/NavBar";
-import { logout } from "../../api/serverRequest";
+import TokenService from "../../services/tokenService";
 import "./App.scss";
 
 /**
@@ -45,7 +45,7 @@ function App(props) {
 						<Route
 							path="/logout"
 							component={(props) => {
-								logout();
+								TokenService.clearAuthToken();
 								return (
 									<Redirect
 										to={{

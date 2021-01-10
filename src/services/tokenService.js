@@ -1,0 +1,18 @@
+import { TOKEN_KEY } from "../config";
+
+const TokenService = {
+	saveAuthToken(token) {
+		window.sessionStorage.setItem(TOKEN_KEY, token);
+	},
+	getAuthToken() {
+		return window.sessionStorage.getItem(TOKEN_KEY);
+	},
+	clearAuthToken() {
+		window.sessionStorage.removeItem(TOKEN_KEY);
+	},
+	hasAuthToken() {
+		return !!TokenService.getAuthToken();
+	},
+};
+
+export default TokenService;

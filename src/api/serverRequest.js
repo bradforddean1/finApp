@@ -1,6 +1,6 @@
 import axios from "axios";
-import session from "../utils/session";
 import { SERVER_ROOT } from "../config";
+import TokenService from "../services/tokenService";
 
 const api = axios.create({
 	baseURL: SERVER_ROOT.concat("/"),
@@ -90,11 +90,15 @@ const request = (method, endpoint, body) => {
 		});
 };
 
+const buildAuthHeaders = () => {
+	return { Authorization: `Bearer ${TokenService.getAuthToken()}` };
+};
 const getTickerProfile = (ticker) => {
 	// USING AXIOS //
 	const query = api
-		.get(`api/quote/${ticker}/profile`, { withCredentials: true })
+		.get(`api/quote/${ticker}/profile`, { headers: buildAuthHeaders() })
 		.then((result) => {
+			console.log(result);
 			if (result.status === "no match") {
 				const err = new Error(`No match found for ${ticker}.`);
 				err.type = "REQUESTERROR";
@@ -146,9 +150,7 @@ const login = (username, password) => {
 	return api
 		.post("api/auth/login", body, { withCredentials: true })
 		.then((response) => {
-			console.log("here");
-			console.log(response);
-			session.setSession(response.headers["Set-Cookie"]);
+			TokenService.saveAuthToken(response.AuthToken);
 		});
 	// return request("POST", "api/auth/login", body).then(()=>{});
 };
@@ -156,18 +158,6 @@ const login = (username, password) => {
 const register = (username, password) => {
 	const body = { username: username, password: password };
 	return request("POST", "api/auth/register", body);
-};
-
-const logout = () => {
-	request("GET", "api/auth/logout")
-		// .then(() => {
-		// 	session.removeSession();
-		// })
-		.catch((error) => {
-			if (!error.type === "UNAUTHORIZED") {
-				throw error;
-			}
-		});
 };
 
 export {
@@ -178,5 +168,4 @@ export {
 	addToPortfolio,
 	login,
 	register,
-	logout,
 };

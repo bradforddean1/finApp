@@ -32,6 +32,8 @@ function Login(props) {
 
 		login(username, password)
 			.then(() => {
+				setUsername("");
+				setPassword("");
 				props.reRoute("/search");
 			})
 			.catch((error) => {
