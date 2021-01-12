@@ -55,7 +55,6 @@ function App(props) {
 								);
 							}}
 						/>
-						{/* request("GET", "api/auth/logout"); */}
 						<Route component={NotFoundPage} />
 					</Switch>
 				</main>

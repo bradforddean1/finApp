@@ -6,10 +6,8 @@ const api = axios.create({
 	baseURL: SERVER_ROOT.concat("/"),
 	timeout: 10000,
 	withCredentials: true,
-	// headers: { "X-Custom-Hheeader": "foobar" },
 });
 
-// REQUEST USING AXIOS USE THIS
 const handleApiResponse = (response) => {
 	if (response.status === 401) {
 		const err = new Error(
@@ -33,72 +31,15 @@ const handleApiResponse = (response) => {
 	return response;
 };
 
-// REQUESTS USING FETCH USE THIS
-const request = (method, endpoint, body) => {
-	const headers = new Headers();
-	headers.append("Content-Type", "application/json");
-
-	const requestOptions = {
-		method: method,
-		credentials: "include",
-		headers: headers,
-		redirect: "follow",
-	};
-
-	body = JSON.stringify(body);
-
-	if (body) {
-		// Object.assign(requestOptions, { body });
-		requestOptions.body = body;
-	}
-
-	const url = SERVER_ROOT.concat("/", endpoint);
-
-	return fetch(url, requestOptions)
-		.then((r) => {
-			if (r.status === 204) {
-				return { status: r.status, body: null, ok: r.ok };
-			}
-			return r
-				.json()
-				.then((data) => {
-					return { status: r.status, body: data, ok: r.ok };
-				})
-				.catch(() => {
-					return { status: r.status, body: null, ok: r.ok };
-				});
-		})
-		.then((response) => {
-			if (response.status === 401) {
-				const err = new Error(
-					response.body && response.body.status
-						? response.body.status
-						: "unauthorized"
-				);
-				err.type = "UNAUTHORIZED";
-				err.passValErrors =
-					response.body && response.body.valErrors
-						? response.body.valErrors
-						: false;
-				throw err;
-			} else if (!response.ok) {
-				const err = new Error(response.body.status);
-				err.type = "REQUESTERROR";
-				throw err;
-			}
-			return response.body;
-		});
-};
-
 const buildAuthHeaders = () => {
 	return { Authorization: `Bearer ${TokenService.getAuthToken()}` };
 };
+
 const getTickerProfile = (ticker) => {
 	// USING AXIOS //
 	const query = api
 		.get(`api/quote/${ticker}/profile`, { headers: buildAuthHeaders() })
 		.then((result) => {
-			console.log(result);
 			if (result.status === "no match") {
 				const err = new Error(`No match found for ${ticker}.`);
 				err.type = "REQUESTERROR";
@@ -110,59 +51,58 @@ const getTickerProfile = (ticker) => {
 			return handleApiResponse(res).data.profile;
 		});
 	return query;
-
-	// USING FETCH //
-	// return handleApiResponse(query); //.then((data) => data.profile);
-
-	// return handleApiResponse(query);
-
-	// return request("GET", `api/quote/${ticker}/profile`).then((result) => {
-	// 	if (result.status === "no match") {
-	// 		const err = new Error(`No match found for ${ticker}.`);
-	// 		err.type = "REQUESTERROR";
-	// 		throw err;
-	// 	}
-	// 	return result.profile;
-	// });
 };
 
 const getPortfolioItems = () => {
-	return request("GET", "api/portfolio");
+	return api
+		.get(`api/portfolio`, { headers: buildAuthHeaders() })
+		.then((res) => {
+			return handleApiResponse(res).data;
+		});
 };
 
 const deletePortfolioItem = (ticker, callback) => {
-	const endpoint = `api/portfolio/${ticker}`;
-	return request("DELETE", endpoint).then(() => {
-		if (callback) {
-			callback(ticker);
-		}
-	});
+	return api
+		.delete(`api/portfolio/${ticker}`, { headers: buildAuthHeaders() })
+		.then((res) => {
+			return handleApiResponse(res);
+		})
+		.then(() => {
+			if (callback) {
+				callback(ticker);
+			}
+		});
 };
 
 const addToPortfolio = (ticker) => {
-	const endpoint = "api/portfolio";
-	const body = { ticker: ticker };
-	return request("POST", endpoint, body);
+	return api
+		.post("api/portfolio", { ticker: ticker }, { headers: buildAuthHeaders() })
+		.then((res) => {
+			return handleApiResponse(res);
+		});
 };
 
 const login = (username, password) => {
-	const body = { username: username, password: password };
 	return api
-		.post("api/auth/login", body, { withCredentials: true })
+		.post(
+			"api/auth/login",
+			{ username: username, password: password },
+			{ withCredentials: false }
+		)
 		.then((response) => {
-			console.log(response.data);
 			TokenService.saveAuthToken(response.data.token);
 		});
-	// return request("POST", "api/auth/login", body).then(()=>{});
 };
 
 const register = (username, password) => {
-	const body = { username: username, password: password };
-	return request("POST", "api/auth/register", body);
+	return api.post(
+		"api/auth/register",
+		{ username: username, password: password },
+		{ withCredentials: false }
+	);
 };
 
 export {
-	request,
 	getTickerProfile,
 	getPortfolioItems,
 	deletePortfolioItem,
