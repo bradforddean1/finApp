@@ -39,6 +39,12 @@ function SearchBar(props) {
 			});
 	};
 
+	const handleKeyDown = (e) => {
+		if (e.key === "Enter") {
+			handleSubmit(e);
+		}
+	};
+
 	return (
 		<div className="SearchBar">
 			<Spinner show={isLoading} />
@@ -50,6 +56,7 @@ function SearchBar(props) {
 					placeholder="Search by ticker symbol..."
 					value={ticker}
 					onChange={(e) => setTicker(e.target.value)}
+					onKeyDown={handleKeyDown}
 				/>
 				<button className="form-button" type="button" onClick={handleSubmit}>
 					<Search color={"#000"} />

@@ -8,28 +8,36 @@ const api = axios.create({
 	withCredentials: true,
 });
 
-const handleApiResponse = (response) => {
-	if (response.status === 401) {
-		const err = new Error(
-			response.data && response.data.status
-				? response.data.status
-				: "unauthorized"
-		);
-		err.type = "UNAUTHORIZED";
+// TODO: Do not create new errros modify existing.
+api.interceptors.response.use(
+	function (response) {
+		return response;
+	},
+	function (error) {
+		if (error.response.status === 401) {
+			const err = new Error(
+				error.response.data && error.response.data.status
+					? error.response.data.status
+					: "unauthorized"
+			);
+			err.type = "UNAUTHORIZED";
 
-		err.passValErrors =
-			response.data && response.data.valErrors
-				? response.data.valErrors
-				: false;
-
-		throw err;
-	} else if (!response.status.toString().charAt(0) === "2") {
-		const err = new Error(response.data.status);
-		err.type = "REQUESTERROR";
-		throw err;
+			err.passValErrors =
+				error.response.data && error.response.data.valErrors
+					? error.response.data.valErrors
+					: false;
+			return Promise.reject(err);
+		} else {
+			const err = new Error(error.response.data.status);
+			err.type = "REQUESTERROR";
+			err.passValErrors =
+				error.response.data && error.response.data.valErrors
+					? error.response.data.valErrors
+					: false;
+			return Promise.reject(err);
+		}
 	}
-	return response;
-};
+);
 
 const buildAuthHeaders = () => {
 	return { Authorization: `Bearer ${TokenService.getAuthToken()}` };
@@ -48,7 +56,7 @@ const getTickerProfile = (ticker) => {
 			return result;
 		})
 		.then((res) => {
-			return handleApiResponse(res).data.profile;
+			return res.data.profile;
 		});
 	return query;
 };
@@ -57,7 +65,7 @@ const getPortfolioItems = () => {
 	return api
 		.get(`api/portfolio`, { headers: buildAuthHeaders() })
 		.then((res) => {
-			return handleApiResponse(res).data;
+			return res.data;
 		});
 };
 
@@ -65,21 +73,19 @@ const deletePortfolioItem = (ticker, callback) => {
 	return api
 		.delete(`api/portfolio/${ticker}`, { headers: buildAuthHeaders() })
 		.then((res) => {
-			return handleApiResponse(res);
-		})
-		.then(() => {
 			if (callback) {
 				callback(ticker);
 			}
+			return res;
 		});
 };
 
 const addToPortfolio = (ticker) => {
-	return api
-		.post("api/portfolio", { ticker: ticker }, { headers: buildAuthHeaders() })
-		.then((res) => {
-			return handleApiResponse(res);
-		});
+	return api.post(
+		"api/portfolio",
+		{ ticker: ticker },
+		{ headers: buildAuthHeaders() }
+	);
 };
 
 const login = (username, password) => {
@@ -89,8 +95,8 @@ const login = (username, password) => {
 			{ username: username, password: password },
 			{ withCredentials: false }
 		)
-		.then((response) => {
-			TokenService.saveAuthToken(response.data.token);
+		.then((res) => {
+			TokenService.saveAuthToken(res.data.token);
 		});
 };
 

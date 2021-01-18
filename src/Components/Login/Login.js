@@ -83,7 +83,7 @@ function Login(props) {
 			})
 			.catch((error) => {
 				if (error.type === "REQUESTERROR") {
-					switch (error.message.status) {
+					switch (error.message) {
 						case "user exists":
 							launchModal({
 								children: (

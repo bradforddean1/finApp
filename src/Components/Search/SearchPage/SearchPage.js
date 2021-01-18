@@ -3,7 +3,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Profile from "../../Profile/Profile/Profile";
 import ProfileContext from "../../Profile/Profile/Profile.context";
 import PropTypes from "prop-types";
-import man from "../../../assets/man3.svg";
+import man from "../../../assets/man3.jpeg";
 import "./SearchPage.scss";
 
 /**

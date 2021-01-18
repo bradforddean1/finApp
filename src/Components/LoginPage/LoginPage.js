@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Login from "../Login/Login";
 import Intermodal from "../Common/Intermodal/Intermodal";
-import man from "../../assets/man1.svg";
+import man from "../../assets/man1.jpeg";
 import "./LoginPage.scss";
 import FullHeaderPage from "../FullHeaderPage/FullHeaderPage";
 
@@ -19,7 +19,7 @@ function LoginPage(props) {
 
 	return (
 		<FullHeaderPage>
-			<>
+			<div className="LoginPage">
 				<img src={man} alt="man in chair looking for stocks" />
 				<Login reRoute={(path) => push(path)} />
 				<Intermodal
@@ -35,7 +35,7 @@ function LoginPage(props) {
 				>
 					<p>You are not logged in.</p>
 				</Intermodal>
-			</>
+			</div>
 		</FullHeaderPage>
 	);
 }

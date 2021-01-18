@@ -3,7 +3,7 @@ import { useApi } from "../../../hooks/useApi";
 import PropTypes from "prop-types";
 import PortfolioList from "../PortfolioList/PortfolioList";
 import Spinner from "../../Common/Spinner/Spinner";
-import man from "../../../assets/man2.svg";
+import man from "../../../assets/man2.jpeg";
 import background from "../../../assets/elipse.svg";
 import "./PortfolioPage.scss";
 import {

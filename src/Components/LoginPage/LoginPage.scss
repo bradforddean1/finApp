@@ -1,4 +1,9 @@
 @use "../../scss/variables" as v;
 
 .LoginPage {
+	text-align: center;
+}
+
+.LoginPage img {
+	max-width: 400px;
 }
