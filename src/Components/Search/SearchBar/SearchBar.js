@@ -52,6 +52,7 @@ function SearchBar(props) {
 				<input
 					type="text"
 					name="ticker"
+					title="Search by ticker symbol..."
 					id="ticker"
 					placeholder="Search by ticker symbol..."
 					value={ticker}

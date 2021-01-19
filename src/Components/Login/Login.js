@@ -138,6 +138,7 @@ function Login(props) {
 			<input
 				type="text"
 				name="username"
+				title="username"
 				id="username"
 				placeholder="email"
 				value={username}
@@ -146,6 +147,7 @@ function Login(props) {
 			<input
 				type="password"
 				name="password"
+				title="password"
 				id="password"
 				placeholder="password"
 				value={password}
