@@ -8,7 +8,7 @@ const api = axios.create({
 	withCredentials: true,
 });
 
-// TODO: Do not create new errros modify existing.
+// TODO: Do not create new errrors modify existing.
 api.interceptors.response.use(
 	function (response) {
 		return response;
