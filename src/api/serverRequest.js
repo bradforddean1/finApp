@@ -45,10 +45,13 @@ const buildAuthHeaders = () => {
 
 const getTickerProfile = (ticker) => {
 	// USING AXIOS //
+
 	const query = api
 		.get(`api/quote/${ticker}/profile`, { headers: buildAuthHeaders() })
 		.then((result) => {
-			if (result.status === "no match") {
+			console.log(result.data);
+
+			if (result.data.status === "no match") {
 				const err = new Error(`No match found for ${ticker}.`);
 				err.type = "REQUESTERROR";
 				throw err;
