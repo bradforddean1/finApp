@@ -7,6 +7,19 @@
 	height: 100%;
 	width: 100%;
 	background-color: v.$loading-bg-color;
-	opacity: 0.8;
+	// opacity: 0.8;
 	z-index: 1000;
+}
+
+.Spinner p {
+	position: relative;
+	top: 40%;
+	text-align: center;
+	color: #fff;
+	font-family: v.$primary-font;
+	font-style: normal;
+	font-weight: 900;
+	font-size: 24px;
+	line-height: 24px;
+	color: #ffffff;
 }

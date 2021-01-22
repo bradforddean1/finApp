@@ -59,7 +59,7 @@ function SearchBar(props) {
 					onChange={(e) => setTicker(e.target.value)}
 					onKeyDown={handleKeyDown}
 				/>
-				<button className="form-button" type="button" onClick={handleSubmit}>
+				<button className="form-button" type="button" onClick={handleSubmit} a>
 					<Search color={"#000"} />
 				</button>
 			</div>

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import PortfolioList from "../PortfolioList/PortfolioList";
 import Spinner from "../../Common/Spinner/Spinner";
 import man from "../../../assets/man2.png";
-import background from "../../../assets/elipse.svg";
+// import background from "../../../assets/elipse.svg";
 import "./PortfolioPage.scss";
 import {
 	getPortfolioItems,
@@ -18,7 +18,7 @@ import {
 function PortfolioPage(props) {
 	const portfolioItems = useApi(getPortfolioItems);
 
-	const [isLoading, data, error] = portfolioItems.initial();
+	const [isLoading, data] = portfolioItems.initial();
 
 	const handleDeletedItem = (ticker) => {
 		portfolioItems.update(data.filter((item) => item.ticker !== ticker));

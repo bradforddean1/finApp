@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ButtonCta from "../Common/ButtonCta/ButtonCta";
 import Intermodal from "../Common/Intermodal/Intermodal";
 import ValidationError from "../Common/ValidationError/ValidationError";
+import Spinner from "../Common/Spinner/Spinner";
 import { login, register } from "../../api/serverRequest";
 import "./Login.scss";
 
@@ -15,6 +16,7 @@ function Login(props) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [valError, setError] = useState();
+	const [isLoading, setIsLoading] = useState(false);
 	const [showIntermodal, setShowIntermodal] = useState(false);
 	const [intermodalContent, setIntermodalContent] = useState({
 		children: null,
@@ -29,14 +31,17 @@ function Login(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setError("");
+		setIsLoading(true);
 
 		login(username, password)
 			.then(() => {
 				setUsername("");
 				setPassword("");
+				setIsLoading(false);
 				props.reRoute("/search");
 			})
 			.catch((error) => {
+				setIsLoading(false);
 				if (error.type === "UNAUTHORIZED") {
 					switch (error.message) {
 						case "already logged in":
@@ -76,13 +81,15 @@ function Login(props) {
 
 	const handleRegister = () => {
 		setShowIntermodal(false);
-
+		setIsLoading(true);
 		register(username, password)
 			.then(() => {
+				setIsLoading(false);
 				props.reRoute("/search");
 			})
 			.catch((error) => {
 				if (error.type === "REQUESTERROR") {
+					setIsLoading(false);
 					switch (error.message) {
 						case "user exists":
 							launchModal({
@@ -135,6 +142,7 @@ function Login(props) {
 
 	return (
 		<div className="Login">
+			<Spinner show={isLoading} />
 			<input
 				type="text"
 				name="username"
