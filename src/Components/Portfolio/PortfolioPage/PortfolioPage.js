@@ -3,7 +3,7 @@ import { useApi } from "../../../hooks/useApi";
 import PropTypes from "prop-types";
 import PortfolioList from "../PortfolioList/PortfolioList";
 import Spinner from "../../Common/Spinner/Spinner";
-import man from "../../../assets/man2.jpeg";
+import man from "../../../assets/man2.png";
 import background from "../../../assets/elipse.svg";
 import "./PortfolioPage.scss";
 import {
@@ -30,7 +30,7 @@ function PortfolioPage(props) {
 			{data.length < 1 ? (
 				<div
 					className="empty-portfolio"
-					style={{ backgroundImage: `url(${background})` }}
+					// style={{ backgroundImage: `url(${background})` }}
 				>
 					<p>Your Portfolio is Empty!</p>
 					<img src={man} alt="looking for stocks" />

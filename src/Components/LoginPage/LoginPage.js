@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Login from "../Login/Login";
 import Intermodal from "../Common/Intermodal/Intermodal";
-import man from "../../assets/man1.jpeg";
+import man from "../../assets/man1.png";
 import "./LoginPage.scss";
 import FullHeaderPage from "../FullHeaderPage/FullHeaderPage";
 

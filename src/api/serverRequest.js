@@ -14,7 +14,11 @@ api.interceptors.response.use(
 		return response;
 	},
 	function (error) {
-		if (error.response.status === 401) {
+		if (!error.response) {
+			return Promise.reject(error);
+		}
+
+		if (error.response.data.status === 401) {
 			const err = new Error(
 				error.response.data && error.response.data.status
 					? error.response.data.status
